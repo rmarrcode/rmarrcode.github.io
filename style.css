@@ -3,7 +3,7 @@
 
 .grid-2{
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
 }
 
 body{
@@ -19,19 +19,25 @@ h2,.white{
     color: #fff;
 }
 
+h3,.white {
+    color: rgb(103, 139, 207);
+}
+
 a{
     color: #7A7C80;
     text-decoration: none;
 }
 /* section 1 */
 .section-1{
-    padding-top: 40vh;
+    padding-top: 12.5vh;
     text-align: center;
 }
 
 .section-1 p{
     font-size: 1.1rem;
     padding-bottom: 10px;
+    padding-right: 100px;
+    padding-left: 100px;
     margin:0;
 }
 
@@ -44,14 +50,20 @@ a{
     font-size: 1.5rem;
     padding: 10px;
 }
+
 /* section 2 */
 .section-2{
     padding-top: 10vh;
-    width: 70%;
+    width: 95%;
 }
 
 .section-2 h2{
     font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+.section-2 h3{
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
@@ -68,9 +80,40 @@ a{
     padding-left: 0;
     width: 100px;
 }
+
+/*section 3*/
+.section-3{
+    padding-top: 10vh;
+    width: 50%;
+}
+
+.section-3 h2{
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+.section-3 h3{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.section-3 p{
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+    margin:0;
+}
+
+.section-3 a{
+    display: block;
+    padding: 5px;
+    font-size: 2rem;
+    padding-left: 0;
+    width: 500px;
+}
+
 /* animations / utilities */
-.section-2 a:hover{
-    font-size: 1.3rem;
+.section-3 a:hover{
+    font-size: 2.5rem;
     color: #fff;
     cursor: pointer;
     transition: 0.2s;
@@ -94,11 +137,18 @@ a{
     }
     .section-1{
         padding:0;
-        padding-top: 5rem;
+        padding-top: 1rm;
     }
     .section-2{
+        padding: 3rem;
+        padding-left: 30rem;
+        padding-right: 1.5rem;
+        padding-top: 2rem;
+    }
+    .section-3{
         padding: 0;
         padding-left: 1.5rem;
+        padding-right: 1.5rem;
         padding-top: 2rem;
     }
 }
