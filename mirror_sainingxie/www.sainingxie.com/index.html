@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Saining Xie</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1026H9KKXP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1026H9KKXP');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-55MFGGC');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font.css">
+
+    <!-- Custom Styles -->
+    <style>
+        header {
+            width: 100%;
+            height: 45px;
+            margin-top: 0px;
+            text-align: center;
+            background-color: #000000;
+            position: fixed;
+            z-index: 2
+        }
+
+        div.navleft a:link,
+        div.navleft a:visited,
+        div.navright a:link,
+        div.navright a:visited {
+            color: #FFFFFF;
+            text-decoration: none
+        }
+
+        div.navright a:hover {
+            text-decoration: underline
+        }
+
+        div.navleft a:hover {
+            text-decoration: underline
+        }
+
+        div.header {
+            line-height: 45px
+        }
+
+        div.navleft {
+            float: left;
+            padding-left: 90px;
+            font-size: 1.4em;
+            font-weight: 600
+        }
+
+        div.navright {
+            float: right;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 1.2em
+        }
+
+        div.navright-group {
+            float: right;
+            display: flex;
+            align-items: center;
+        }
+
+        div.container a {
+            color: #004a6c;
+            text-decoration: none
+        }
+
+        div.container a:hover {
+            text-decoration: underline
+        }
+
+        body {
+            font-family: 'Lato', Verdana, Helvetica, sans-serif;
+            font-size: 16px;
+            background-color: #FFFFFF;
+            color: #4F6371;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 2rem;
+        }
+
+        #header {
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: flex-end;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        #footer {
+            background-color: #FFFFFF;
+            padding: 60px;
+        }
+
+        #portrait {
+            border: 3px solid white;
+        }
+
+        #portrait-student {
+            width: 80px;
+            border: 1px solid white;
+            border-radius: 150px;
+        }
+
+        #header-text {
+            margin-top: 60px;
+            margin-left: 220px;
+        }
+
+        #header-text-name {
+            color: #000000;
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .header-text-email {
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .header-text-desc {
+            font-size: 18px;
+        }
+
+        .vspace-top {
+            margin-top: 30px;
+        }
+
+        .vspace-top-news {
+            margin-top: 15px;
+        }
+
+        .paper-image {
+            width: 150px;
+        }
+
+        .news-date {
+            font-weight: bold;
+        }
+
+        .news-date-red {
+            color: #4b1010;
+            font-weight: bold;
+        }
+
+        .text-red {
+            color: #4b1010;
+        }
+
+        .paper-title {
+            font-weight: bold;
+        }
+
+        .paper-highlight {
+            color: #691616;
+        }
+
+        div.paper-author a {
+            color: #777777;
+            font-weight: 500
+        }
+
+        span.author.sx {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        /* text-decoration:underline} */
+        div.paper-author a:hover {
+            text-decoration: underline
+        }
+
+        /* Mobile responsive styles for navigation */
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                min-height: 45px;
+                padding: 8px 0;
+                overflow: hidden;
+            }
+
+            div.header {
+                line-height: 1.5;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            div.navleft {
+                float: none;
+                padding-left: 15px;
+                padding-right: 10px;
+                font-size: 1.1em;
+                flex: 0 0 auto;
+            }
+
+            div.navright-group {
+                float: none;
+                display: flex;
+                align-items: center;
+                flex: 0 0 auto;
+            }
+
+            div.navright {
+                float: none;
+                padding-left: 10px;
+                padding-right: 0;
+                font-size: 1em;
+            }
+
+            div.navright:last-child {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            div.navleft {
+                font-size: 1em;
+                padding-left: 12px;
+            }
+
+            div.navright {
+                font-size: 0.9em;
+                padding-left: 8px;
+            }
+
+            div.header {
+                padding: 0 8px;
+            }
+        }
+    </style>
+
+    <!-- Add this line in the <head> section of your HTML -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55MFGGC" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a name="Home"></a>
+    <div class='outercontainer'>
+        <header>
+            <div class="container header">
+                <div class="navleft text"><a href="index.html#Home">Saining Xie</a></div>
+                <div class="navright-group">
+                    <div class="navright text"><a href="index.html#Pub">Research</a></div>
+                    <div class="navright text"><a href="index.html#Home">Home</a></div>
+                </div>
+            </div>
+        </header>
+
+        <div id='header'>
+            <div class='container'>
+                <div class='row'>
+                    <p></p>
+                </div>
+                <div class='row'>
+                    <p></p>
+                </div>
+                <div class='row'>
+                    <p></p>
+                </div>
+                <div class='row'>
+                    <p></p>
+                </div>
+                <div class='row'>
+                    <div class="col-sm-3 offset-sm-2">
+                        <!-- <img src='imgs/portrait.png' class='img-fluid' id='portrait'> -->
+                        <img src='imgs/profile_nana_banana.png' class='img-fluid' id='portrait'>
+                    </div>
+                    <div class="col-sm-5 offset-sm-1">
+                        <div id='header-text-name'> Saining Xie </div>
+                        <p></p>
+                        <div class='header-text-desc'> Co-Founder and CSO, AMI Labs </div>
+                        <div class='header-text-desc'> Assistant Professor, Courant Institute, NYU</div>
+                        <br>
+                        <div class='header-text-email'>
+                            <span class="email" data-user="saining.xie" data-domain="nyu.edu"></span><br>
+                            <span class="email" data-user="saining" data-domain="amilabs.xyz"></span>
+                        </div>
+                        <p></p>
+                        <div>
+                            <img src="imgs/google-scholar.svg" alt="Google Scholar" style="width: 16px; height: 16px; vertical-align: middle;"><a href="https://scholar.google.com/citations?user=Y2GtJkAAAAAJ&hl=en"> Google Scholar</a> /    
+                            <img src="imgs/x-logo.svg" alt="X" style="width: 16px; height: 16px; vertical-align: middle;"><a href="https://x.com/sainingxie" style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-weight: 400;"> @sainingxie</a>                             <!--/ <a href="pdf/saining_xie_cv.pdf">CV</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='row vspace-top'>
+                <div class='col offset-sm-1'>
+                    <h1>About Me</h1>
+                    <p>
+                        Hello! I am the co-founder and Chief Science Officer (CSO) at <a href="https://amilabs.xyz">AMI Labs</a>, and a faculty member at NYU. Before this, I was a research scientist at Google DeepMind on the GenAI/nanobanana team. Earlier, I spent four years as a research scientist at Facebook AI Research (FAIR) in Menlo Park.                    
+                        <p></p>
+                        Most human and animal knowledge arises from sensory experiences and their interactions with the environment. I believe that achieving human-like intelligence requires moving beyond language-only systems toward world models that learn directly from continuous, real-world sensory input---systems capable of <i>understanding, creating, reasoning, planning, and developing commonsense about the physical world</i>.
+                        <p></p>
+                        To advance understanding, I have developed some of the most widely adopted architectures and representation learning systems in computer vision, including <a
+                        href="https://arxiv.org/abs/1611.05431"><u><i>this</i></u></a>, <a
+                        href="https://arxiv.org/abs/2201.03545"><u><i>this</i></u></a>, and <a
+                        href="https://arxiv.org/abs/1911.05722"><u><i>this</i></u></a>. You can also explore our recent work <a
+                        href="https://cambrian-mllm.github.io/"><u><i>here</i></u></a>, which pushes the boundaries of multimodal intelligence and spatial supersensing across images and videos. For generation, I co-created diffusion transformers (<a
+                        href="https://arxiv.org/abs/2212.09748">DiT</a>), a framework that powers most of today's leading generative systems like Sora. We've since accelerated training by orders of magnitude, as explored in <a
+                        href="https://arxiv.org/abs/2410.06940"><u><i>this</i></u></a> and <a href="https://arxiv.org/abs/2510.11690"><u><i>this</i></u></a>.
+                        <p></p>
+                         My research has been cited over 90,000 times (as of Dec 2025), and I am honored to be a recipient of the Marr Prize Honorable Mention, NSF CAREER Award, AISTATS Test-of-Time Award, and the PAMI Young Researcher Award.
+                    </p>
+                    
+                    <i><b>I will be on leave from NYU in Spring/Summer 2026.</b></i>
+                    <div class='row vspace-top-news'>
+                        <!-- <div class="col-sm-3 news-date"> News </div>
+                        <div class="col">
+                            <li>Started as an Assistant Professor of Computer Science at <a
+                                    href="https://cs.nyu.edu/home/index.html">the Courant Institute of Mathematical
+                                    Sciences</a> at NYU. Multiple positions available!</li>
+                            <li>Georgia and I are organizing the <a
+                                    href="https://gkioxari.github.io/Tutorials/iccv2023/">"Quo Vadis, Computer
+                                    Vision?"</a> workshop at ICCV 2023. See you in Paris. </li>
+                        </div>
+                    </div> -->
+
+            
+                    <!-- <div class='row vspace-top-news'>
+                        <div class="col-sm-3 news-date"> Prospective PhD Students </div>
+                        <div class="col">
+                            I'm always looking for highly motivated PhD candidates to join my group.
+                            If you're interested in collaborating with me for your doctoral studies,
+                            please submit your application to the <a
+                                href="https://cs.nyu.edu/home/phd/admission.html">Courant CS Ph.D. program</a> and
+                            be sure to include my name in your application materials.
+                        </div>
+                    </div>
+
+                    <div class='row vspace-top-news'>
+                        <div class="col-sm-3 news-date"> Internship opportunity </div>
+                        <div class="col">
+                            From time to time, our group at NYU offers visiting researcher positions for individuals
+                            from different backgrounds. If you possess a strong passion for applying representation
+                            learning to tackle complex challenges in machine learning, computer vision (among many other
+                            exciting domains!), please feel free to send me an email with your CV.
+                        </div>
+                    </div> -->
+
+                    <!-- <div class='row vspace-top-news'>
+                        <div class="col-sm-3 news-date"> Services </div>
+                        <div class="col">
+                            I am serving as an Area Chair for NeurIPS, ECCV, ICCV, CVPR, and ICLR.
+                        </div>
+                    </div> -->
+<!-- 
+
+                    <div class='vspace-top'>
+                        <div class="row vspace-top-news"> -->
+
+                            <section class="container lead">
+                                <div class='vspace-top' style="font-size:16px">
+                                    <h1>Research Group</h1>
+                                    <ul style="list-style-type:none; padding-left: 0;">
+                                        <li>
+                                            <a href="https://jihanyang.github.io/">Jihan Yang</a>
+                                            <div style="font-size:12px; margin-top:0;">Postdoctoral Fellow</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://ellisbrown.github.io/">Ellis Brown</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2023)</div>
+                                            <div style="font-size:12px; margin-top:0;">Co-advised with Rob Fergus, NDSEG Fellowship</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://daohanlu.github.io/">Daohan (Fred) Lu</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2023)</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://xichenpan.com/">Xichen Pan</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2023)</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://tsb0601.github.io/petertongsb/">Shengbang (Peter) Tong</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2023)</div>
+                                            <div style="font-size:12px; margin-top:0;">Co-advised with Yann LeCun, OpenAI Fellowship</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.anjaliwgupta.com/">Anjali Gupta</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2024)</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://willisma.github.io/">Nanye (Willis) Ma</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2024)</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://ojmichel.github.io/">Oscar Michel</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2024), NSF Fellowship</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://scholar.google.com/citations?user=v6dmW5cntoMC&hl=zh-CN">Shusheng Yang</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2024)</div>
+                                        </li>
+                                        <li>
+                                            <a href="https://bytetriper.github.io/">Boyang Zheng</a>
+                                            <div style="font-size:12px; margin-top:0;">PhD Student (Fall 2025)</div>
+                                        </li>
+                                    </ul>
+
+                                    <p>I was fortunate to work with many exceptionally talented students and interns during my time at FAIR, GDM, and NYU. Many of whom are now leaders in the AI field. These include <a href="https://sites.google.com/view/sanghyunwoo/">Sanghyun Woo</a> (nano banana, GDM), <a href="https://www.wpeebles.com/">Bill Peebles</a> (Head of Sora, OpenAI), <a href="https://scholar.google.com/citations?user=T94KevkAAAAJ&hl=en">Eric Mintun</a> (Sora, OpenAI), <a href="https://www.linkedin.com/in/zihan-zheng-233824247/">Zihan Zhang</a> (OpenAI), <a href="https://liuzhuang13.github.io/">Zhuang Liu</a> (professor at Princeton), <a href="https://cs.stanford.edu/people/jiaxuan/">Jiaxuan You</a> (professor at UIUC), <a href="https://bingykang.github.io/">Bingyi Kang</a> (Researcher at TikTok), <a href="https://www.demiguo.me/">Demi Guo</a> (Cofounder, Pika), <a href="https://www.xunhuang.me/">Xun Huang</a> (Cofounder, stealth startup), <a href="https://sekunde.github.io/">Ji Hou</a> (Meta GenAI), <a href="https://chenxi116.github.io/">Chenxi Liu</a> (Meta, TBD Lab), <a href="https://normanmu.com/">Norman Mu</a> (xAI), <a href="https://scholar.google.com/citations?user=kAOAeBsAAAAJ&hl=en">Suppakit Waiwitlikhit</a> (xAI), and many others.</p>
+                      
+                            <div class='vspace-top'>
+                                <a name="Pub"></a>
+                                <h1>Selected Publications</h1>
+                                (* indicate equal contribution)
+                                <br>
+                                For full publication list, please refer to my <img src="imgs/google-scholar.svg" alt="Google Scholar" style="width: 20px; height: 20px; vertical-align: middle;"><a href="https://scholar.google.com/citations?user=Y2GtJkAAAAAJ&hl=en"> Google Scholar page.</a> 
+                                <br>
+                                <small>(Actually, the best way to stay updated on my latest research is to check there, as I may not update this website regularly.)</small>
+                            </div>
+
+                            <!-- ><div class='row vspace-top-news'>
+                    <div class="col-sm-3 news-date"> 2022 </div>
+		    </div> -->
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source
+                            src="imgs/solaris.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Solaris: Building a Multiplayer Video World Model in Minecraft
+                    </div>
+                    <div class='paper-desc'>
+                        Technical Report, ArXiv, 2026
+                    </div>
+                    <div class="paper-author">
+                        <span class="author" id="solaris-authors">Oscar Michel†*, Georgy Savva†*, Daohan Lu*, Suppakit Waiwitlikhit, Timothy Meehan, Dhairya Mishra, Srivats Poddar, Jack Lu, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://solaris-wm.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2602.22208">[Paper]</a>
+                        <a href="https://github.com/solaris-wm/solaris">[Solaris Model]</a>
+                        <a href="https://github.com/solaris-wm/solaris-engine">[Solaris Engine]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/rae-samples.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Diffusion Transformers with Representation Autoencoders
+                    </div>
+                    <div class='paper-desc'>
+                        ICLR, 2026
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Boyang Zheng, Nanye Ma, Shengbang Tong, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://rae-dit.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2510.11690">[Paper]</a>
+                        <a href="https://github.com/bytetriper/RAE">[Code]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/cambrian-s-photo.jpg' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Cambrian-S: Towards Spatial Supersensing in Video
+                    </div>
+                    <div class='paper-desc'>
+                        ICLR, 2026
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Shusheng Yang*, Jihan Yang*, Pinzhi Huang, Ellis Brown, Zihao Yang, Yue Yu, Shengbang Tong, Zihan Zheng, Yifan Xu, Muhan Wang, Daohan Lu, Rob Fergus, Yann LeCun, Li Fei-Fei, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://cambrian-mllm.github.io/">[Website]</a>
+                        <a href="https://arxiv.org/abs/2511.04670">[Paper]</a>
+                        <a href="https://github.com/cambrian-mllm/cambrian-s">[Code]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/repa.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Representation Alignment for Generation: Training Diffusion Transformers Is Easier Than You Think
+                    </div>
+                    <div class='paper-desc'>
+                        ICLR 2025
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Sihyun Yu, Sangkyung Kwak, Huiwon Jang, Jongheon Jeong, Jonathan Huang, Jinwoo Shin*, Saining Xie*</span>
+                    </div>
+                    <div>
+                        <a href="https://sihyun.me/REPA/">[Blog]</a>
+                        <a href="https://github.com/sihyun-yu/REPA">[Code]</a>
+                    </div>
+                    <div class='paper-highlight'>
+                        Oral Presentation
+                    </div>
+                </div>
+            </div>
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/inference-scale.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Inference-Time Scaling for Diffusion Models beyond Scaling Denoising Steps
+                    </div>
+                    <div class='paper-desc'>
+                        CVPR 2025
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Nanye Ma*, Shangyuan Tong*, Haolin Jia, Hexiang Hu, Yu-Chuan Su, Mingda Zhang, Xuan Yang, Yandong Li, Tommi Jaakkola, Xuhui Jia, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://inference-scale-diffusion.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2501.09732">[Paper]</a>
+                    </div>
+                    <div class='paper-highlight'>
+                        Highlight Presentation
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/tis.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Thinking in Space: How Multimodal Large Language Models See, Remember and Recall Spaces
+                    </div>
+                    <div class='paper-desc'>
+                        CVPR 2025
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Jihan Yang*, Shusheng Yang*, Anjali W. Gupta*, Rilyn Han*, Li Fei-Fei, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2412.14171">[Paper]</a>
+                        <a href="https://github.com/vision-x-nyu/thinking-in-space">[Code]</a>
+                    </div>
+                    <div class='paper-highlight'>
+                        Oral Presentation
+                    </div>
+                </div>
+            </div>
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/cambrian-1.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Cambrian-1: A Fully Open, Vision-Centric Exploration of Multimodal LLMs
+                    </div>
+                    <div class='paper-desc'>
+                        NeurIPS 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Shengbang Tong*, Ellis Brown*, Penghao Wu*, Sanghyun Woo, Manoj Middepogu, Sai Charitha Akula, Jihan Yang, Shusheng Yang, Adithya Iyer, Xichen Pan, Austin Wang, Rob Fergus, Yann LeCun, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://cambrian-mllm.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2406.16860">[Paper]</a>
+                        <a href="https://github.com/cambrian-mllm/cambrian">[Code]</a>
+                    </div>
+                    <div class='paper-highlight'>
+                        Oral Presentation
+                    </div>
+                </div>
+            </div>
+
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/rl4vlm.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Fine-Tuning Large Vision-Language Models as Decision-Making Agents via Reinforcement Learning
+                    </div>
+                    <div class='paper-desc'>
+                        NeurIPS 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Yuexiang Zhai*, Hao Bai†, Zipeng Lin†, Jiayi Pan†, Shengbang Tong†, Yifei Zhou†, Alane Suhr, Saining Xie, Yann LeCun, Yi Ma, Sergey Levine</span>
+                    </div>
+                    <div>
+                        <a href="https://rl4vlm.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2405.10292">[Paper]</a>
+                        <a href="https://github.com/RL4VLM/RL4VLM">[Code]</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/scaling-3d-gaussian.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        On Scaling Up 3D Gaussian Splatting Training
+                    </div>
+                    <div class='paper-desc'>
+                        ICLR 2025
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Hexu Zhao, Haoyang Weng, Daohan Lu, Ang Li, Jinyang Li, Aurojit Panda, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://daohanlu.github.io/scaling-up-3dgs/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2406.18533">[Paper]</a>
+                        <a href="https://github.com/nyu-systems/Grendel-GS">[Code]</a>
+                    </div>
+                    <div class='paper-highlight'>
+                        Oral Presentation
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/virl.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        V-IRL: Grounding virtual intelligence in real life
+                    </div>
+                    <div class='paper-desc'>
+                        ECCV 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Jihan Yang, Runyu Ding, Ellis Brown, Xiaojuan Qi, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://virl-platform.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2402.03310">[Paper]</a>
+                        <a href="https://github.com/VIRL-Platform/VIRL">[Code]</a>
+                        <a href="https://www.youtube.com/watch?v=F8OYtifxfe8">[Video]</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/sit.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        SIT: Exploring flow and diffusion-based generative models with scalable interpolant transformers
+                    </div>
+                    <div class='paper-desc'>
+                        ECCV 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Nanye Ma, Mark Goldstein, Michael S Albergo, Nicholas M Boffi, Eric Vanden-Eijnden, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://scalable-interpolant.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2401.08740">[Paper]</a>
+                        <a href="https://github.com/willisma/SiT">[Code]</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/ldae.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Deconstructing denoising diffusion models for self-supervised learning
+                    </div>
+                    <div class='paper-desc'>
+                        ArXiv 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Xinlei Chen, Zhuang Liu, Saining Xie, Kaiming He</span>
+                    </div>
+                    <div>
+                        <a href="https://arxiv.org/abs/2401.14404">[Paper]</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/ews.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs
+                    </div>
+                    <div class='paper-desc'>
+                        CVPR 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Shengbang Tong, Zhuang Liu, Yuexiang Zhai, Yi Ma, Yann LeCun, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://tsb0601.github.io/mmvp_blog/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2401.06209">[Paper]</a>
+                        <a href="https://github.com/tsb0601/MMVP">[Code]</a>
+                    </div>
+                    <div class='paper-highlight'>
+                        Oral Presentation
+                    </div>
+                </div>
+            </div>
+            
+            <div class='row vspace-top'>
+                <div class="col-sm-3">
+                    <img src='imgs/vstar.png' class='img-fluid'>
+                </div>
+                <div class="col">
+                    <div class='paper-title'>
+                        V*: Guided Visual Search as a Core Mechanism in Multimodal LLMs
+                    </div>
+                    <div class='paper-desc'>
+                        CVPR 2024
+                    </div>
+                    <div class="paper-author">
+                        <span class="author">Penghao Wu, Saining Xie</span>
+                    </div>
+                    <div>
+                        <a href="https://vstar-seal.github.io/">[Blog]</a>
+                        <a href="https://arxiv.org/abs/2312.14135">[Paper]</a>
+                        <a href="https://github.com/penghao-wu/vstar">[Code]</a>
+                    </div>
+                </div>
+            </div>
+
+                    <div class='row vspace-top'>
+                        <div class="col-sm-3">
+                            <img src='imgs/image-sculpting.png' class='img-fluid'>
+                        </div>
+                        <div class="col">
+                            <div class='paper-title'>
+                                Image Sculpting: Precise Object Editing with 3D Geometry Control
+                            </div>
+                            <div class='paper-desc'>
+                                CVPR 2024
+                            </div>
+                            <div class="paper-author"> 
+                                <span class="author"> Jiraphon Yenphraphai, Xichen Pan, Sainan Liu, Daniele Panozzo, Saining Xie
+                                </span>
+                            </div>
+                            <div>
+                                <a href="https://image-sculpting.github.io/">[Blog]</a>
+                                <a href="https://arxiv.org/abs/2401.01702">[Paper]</a>
+                                <a href="https://youtu.be/qdk6sVr47MQ?si=6Mm6PoGJmGYtUTI5">[Video]</a>
+                                <a href="https://github.com/vision-x-nyu/image-sculpting">[Code]</a>
+                            </div>
+                        </div>
+
+                        <div class='row vspace-top'>
+                            <div class="col-sm-3">
+                                <img src='imgs/demystified.png' class='img-fluid'>
+                            </div>
+                            <div class="col">
+                                <div class='paper-title'>
+                                    Demystifying CLIP Data
+                                </div>
+                                <div class='paper-desc'>
+                                    ICLR 2023
+                                </div>
+                                <div class="paper-author">
+                                    <span class="author">Hu Xu, Saining Xie, Xiaoqing Ellen Tan, Po-Yao Huang, 
+                                        Russell Howes, Vasu Sharma, Shang-Wen Li, Gargi Ghosh, Luke Zettlemoyer, Christoph Feichtenhofer
+                                    </span>
+                                </div>
+                                <div>
+                                    <a href="https://arxiv.org/abs/2309.16671v3">[Paper]</a>
+                                    <a href="https://github.com/facebookresearch/MetaCLIP">[Code]</a>
+                                </div
+                                <div class='paper-highlight'>
+                                    Spotlight Presentation
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class='row vspace-top'>
+                                <div class="col-sm-3">
+                                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                                        <source
+                                            src="imgs/z-walk-DiT-XL-patch2-res512-vae-ft-ema-3002400-cfg-4.0-rng640-8-grid.mp4"
+                                            type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="col">
+                                    <div class='paper-title'>
+                                        Scalable Diffusion Models with Transformers
+                                    </div>
+                                    <div class='paper-desc'>
+                                        ICCV 2023
+                                    </div>
+                                    <div class="paper-author">
+                                        <span class="author"><a href="https://www.wpeebles.com/">William
+                                                Peebles</a></span>,
+                                        <span class="author">Saining Xie</span>
+                                    </div>
+                                    <div>
+                                        <a href="http://arxiv.org/abs/2212.09748">[Paper]</a>
+                                        <a href="https://www.wpeebles.com/DiT">[Project]</a>
+                                        <a href="https://www.github.com/facebookresearch/DiT">[Code]</a>
+                                    </div>
+                                    <div class='paper-highlight'>
+                                        Oral Presentation
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='row vspace-top'>
+                                <div class="col-sm-3">
+                                    <img src='imgs/cit.jpeg' class='img-fluid'>
+                                </div>
+                                <div class="col">
+                                    <div class='paper-title'>
+                                        CiT: Curation in Training for Effective Vision-Language Data
+                                    </div>
+                                    <div class='paper-desc'>
+                                        ICCV 2023
+                                    </div>
+                                    <div class="paper-author">
+                                        <span class="author">Hu Xu, Saining Xie, Po-Yao Huang, Licheng Yu,
+                                            Russell
+                                            Howes, Gargi Ghosh, Luke Zettlemoyer, Christoph Feichtenhofer</span>
+                                    </div>
+                                    <div>
+                                        <a href="https://arxiv.org/abs/2301.02241">[Paper]</a>
+                                        <a href="https://github.com/facebookresearch/CiT">[Code]</a>
+                                    </div </div>
+                                </div>
+
+                                <div class='row vspace-top'>
+                                    <div class="col-sm-3">
+                                        <img src='imgs/vlpart.jpg' class='img-fluid'>
+                                    </div>
+                                    <div class="col">
+                                        <div class='paper-title'>
+                                            Going Denser with Open-Vocabulary Part Segmentation
+                                        </div>
+                                        <div class='paper-desc'>
+                                            ICCV 2023
+                                        </div>
+                                        <div class="paper-author">
+                                            <span class="author">Peize Sun, Shoufa Chen, Chenchen Zhu, Fanyi
+                                                Xiao,
+                                                Ping Luo, Saining Xie, Zhicheng Yan</span>
+                                        </div>
+                                        <div>
+                                            <a href="https://arxiv.org/abs/2305.11173">[Paper]</a>
+                                            <a href="https://github.com/facebookresearch/VLPart">[Code]</a>
+                                        </div </div>
+                                    </div>
+
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/convnextv2.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                ConvNeXt V2: Co-designing and Scaling ConvNets with Masked
+                                                Autoencoders
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2023
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a
+                                                        href="https://sites.google.com/view/sanghyunwoo/">Sanghyun
+                                                        Woo</a></span>,
+                                                <span class="author"><a
+                                                        href="https://www.linkedin.com/in/shoubhik-debnath-41268570/">Shoubhik
+                                                        Debnath</a></span>,
+                                                <span class="author"><a href="https://ronghanghu.com/">Ronghang
+                                                        Hu</a></span>,
+                                                <span class="author"><a href="https://xinleic.xyz/">Xinlei
+                                                        Chen</a></span>,
+                                                <span class="author"><a href="https://liuzhuang13.github.io/">Zhuang
+                                                        Liu</a></span>,
+                                                <span class="author"><a
+                                                        href="https://scholar.google.com/citations?user=XA8EOlEAAAAJ&hl=en">In
+                                                        So Kweon</a></span>,
+                                                <span class="author">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2301.00808">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/ConvNeXt-v2">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/convnext.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                A ConvNet for the 2020s
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2022
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://liuzhuang13.github.io/">Zhuang
+                                                        Liu</a></span>,
+                                                <span class="author"><a href="https://hanzimao.me/">Hanzi
+                                                        Mao</a></span>,
+                                                <span class="author"><a href="https://chaoyuan.org/">Chao-Yuan
+                                                        Wu</a></span>,
+                                                <span class="author"><a
+                                                        href="https://feichtenhofer.github.io/">Christoph
+                                                        Feichtenhofer</a></span>,
+                                                <span class="author"><a
+                                                        href="https://people.eecs.berkeley.edu/~trevor/">Trevor
+                                                        Darrell</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2201.03545">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/ConvNeXt">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class='row vspace-top-news'>
+                    <div class="col-sm-3 news-date"> <p></p> 2021 </div>
+                </div>-->
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/slip.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                SLIP: Self-supervision meets Language-Image Pre-training
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ECCV 2022
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://www.normanmu.com/">Norman
+                                                        Mu</a></span>,
+                                                <span class="author"><a
+                                                        href="https://alexander-kirillov.github.io/">Alexander
+                                                        Kirillov</a></span>,
+                                                <span class="author"><a
+                                                        href="http://people.eecs.berkeley.edu/~daw/">David
+                                                        Wagner</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2112.12750">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/SLIP">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/maskfeat.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Masked Feature Prediction for Self-Supervised Visual
+                                                Pre-Training
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2022
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://weichen582.github.io/">Chen
+                                                        Wei</a></span>,
+                                                <span class="author"><a href="https://haoqifan.github.io/">Haoqi
+                                                        Fan</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://chaoyuan.org/">Chao-Yuan
+                                                        Wu</a></span>,
+                                                <span class="author"><a href="https://www.cs.jhu.edu/~ayuille/">Alan
+                                                        Yuille</a></span>,
+                                                <span class="author"><a
+                                                        href="https://feichtenhofer.github.io/">Christoph
+                                                        Feichtenhofer</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2112.09133">[Paper]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/vit_det.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Benchmarking Detection Transfer Learning with Vision
+                                                Transformers
+                                            </div>
+                                            <div class='paper-desc'>
+                                                arXiv 2021
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://lyttonhao.github.io/">Yanghao
+                                                        Li</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="http://xinleic.xyz/">Xinlei
+                                                        Chen</a></span>,
+                                                <span class="author"><a href="https://pdollar.github.io/">Piotr
+                                                        Dollár</a></span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Ross
+                                                        Girshick</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2111.11429">[Paper]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/mae.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Masked Autoencoders are Scalable Vision Learners
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2022
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>,
+                                                <span class="author"><a href="http://xinleic.xyz/">Xinlei
+                                                        Chen</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://lyttonhao.github.io/">Yanghao
+                                                        Li</a></span>,
+                                                <span class="author"><a href="https://pdollar.github.io/">Piotr
+                                                        Dollár</a></span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Ross
+                                                        Girshick</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2111.06377">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/mae">[Code]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Oral Presentation
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                                                <source src="imgs/pri3d.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Pri3D: Can 3D Priors Help 2D Representation Learning?
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICCV 2021
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://sekunde.github.io/">Ji
+                                                        Hou</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a
+                                                        href="https://research.facebook.com/people/graham-benjamin/">Benjamin
+                                                        Graham</a></span>,
+                                                <span class="author"><a
+                                                        href="https://www.professoren.tum.de/en/dai-angela/">Angela
+                                                        Dai</a></span>,
+                                                <span class="author"><a href="https://www.niessnerlab.org/">Matthias
+                                                        Nießner</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2104.11225">[Paper]</a>
+                                                <a href="https://www.youtube.com/watch?v=S2VodtyfQbQ">[Video]</a>
+                                                <a href="https://github.com/Sekunde/Pri3D">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/mocov3.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                An Empirical Study of Training Self-supervised Vision
+                                                Transformers
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICCV 2021
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="http://xinleic.xyz/">Xinlei
+                                                        Chen</a>*</span>,
+                                                <span class="author sx">Saining Xie*</span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>,
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2104.02057">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/moco-v3">[Code]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Oral Presentation
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/incbar2.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                On Interaction Between Augmentations and Corruptions in Natural
+                                                Corruption
+                                                Robustness
+                                            </div>
+                                            <div class='paper-desc'>
+                                                NeurIPS 2021
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a
+                                                        href="https://scholar.google.ca/citations?user=T94KevkAAAAJ&hl=en">Eric
+                                                        Mintun</a></span>,
+                                                <span class="author"><a
+                                                        href="https://alexander-kirillov.github.io/">Alexander
+                                                        Kirillov</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2102.11273">[Paper]</a>
+                                                <a
+                                                    href="https://github.com/facebookresearch/augmentation-corruption">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                                                <source src="imgs/csc.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Exploring Data-Efficient 3D Scene Understanding with Contrastive
+                                                Scene
+                                                Contexts
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2021
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://sekunde.github.io/">Ji
+                                                        Hou</a></span>,
+                                                <span class="author"><a
+                                                        href="https://research.facebook.com/people/graham-benjamin/">Benjamin
+                                                        Graham</a></span>,
+                                                <span class="author"><a href="https://www.niessnerlab.org/">Matthias
+                                                        Nießner</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="http://kaldir.vc.in.tum.de/scannet_benchmark/data_efficient/">[Data-Efficient
+                                                    ScanNet Challenge]</a>
+                                                <a href="https://sekunde.github.io/project_efficient/">[Project]</a>
+                                                <a href="https://arxiv.org/abs/2012.09165">[Paper]</a>
+                                                <a
+                                                    href="https://github.com/facebookresearch/ContrastiveSceneContexts">[Code]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Oral Presentation
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/lanas-2.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Sample-Efficient Neural Architecture Search by Learning Action
+                                                Space
+                                            </div>
+                                            <div class='paper-desc'>
+                                                TPAMI 2021
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://linnanwang.github.io/">Linnan
+                                                        Wang</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a
+                                                        href="https://research.facebook.com/people/li-teng/">Teng
+                                                        Li</a></span>,
+                                                <span class="author"><a href="http://cs.brown.edu/~rfonseca/">Rodrigo
+                                                        Fonseca</a></span>,
+                                                <span class="author"><a href="https://yuandong-tian.com/">Yuandong
+                                                        Tian</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1906.06832">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/LaMCTS">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top-news'>
+                                        <div class="col-sm-3 news-date">
+                                            <p></p> 2020
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/relational_graph.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Graph Structure of Neural Networks
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICML 2020
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a
+                                                        href="https://cs.stanford.edu/people/jiaxuan/">Jiaxuan
+                                                        You</a></span>,
+                                                <span class="author"><a href="https://cs.stanford.edu/people/jure/">Jure
+                                                        Leskovec</a></span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2007.06559">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/graph2nn">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/pointcontrast.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                PointContrast: Unsupervised Pre-training for 3D Point Cloud
+                                                Understanding
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ECCV 2020
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://jiataogu.me/">Jiatao
+                                                        Gu</a></span>,
+                                                <span class="author"><a
+                                                        href="https://scholar.google.com/citations?user=lJFV2cwAAAAJ&hl=en">Demi
+                                                        Guo</a></span>,
+                                                <span class="author"><a href="https://web.stanford.edu/~rqi/">Charles R.
+                                                        Qi</a></span>,
+                                                <span class="author"><a
+                                                        href="https://geometry.stanford.edu/member/guibas/">Leonidas J.
+                                                        Guibas</a></span>,
+                                                <span class="author"><a href="https://orlitany.github.io/">Or
+                                                        Litany</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2007.10985">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/pointcontrast">[Code]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Spotlight Presentation
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/unnas.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Are Labels Necessary for Neural Architecture Search?
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ECCV 2020
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://www.cs.jhu.edu/~cxliu/">Chenxi
+                                                        Liu</a></span>,
+                                                <span class="author"><a href="https://pdollar.github.io/">Piotr
+                                                        Dollár</a></span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Ross
+                                                        Girshick</a></span>,
+                                                <span class="author"><a href="https://www.cs.jhu.edu/~ayuille/">Alan
+                                                        Yuille</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/2003.12056">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/unnas">[Code]</a>
+                                                <a href="https://www.youtube.com/watch?v=pz-uELduTLI">[Talk]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Spotlight Presentation
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/moco.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Momentum Contrast for Unsupervised Visual Representation
+                                                Learning
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2020
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>,
+                                                <span class="author"><a href="https://haoqifan.github.io/">Haoqi
+                                                        Fan</a></span>,
+                                                <span class="author"><a href="https://ppwwyyxx.com/">Yuxin
+                                                        Wu</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Ross
+                                                        Girshick</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1911.05722">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/moco/">[Code]</a>
+                                                <a href="pdf/moco_slides.pdf">[Slides]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Best Paper Nomination (top 30)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/decouple.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Decoupling Representation and Classifier for Long-Tailed
+                                                Recognition
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICLR 2020
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a
+                                                        href="https://scholar.google.com.sg/citations?user=NmHgX-wAAAAJ&hl=en">Bingyi
+                                                        Kang</a></span>,
+                                                <span class="author sx">Saining Xie</span>
+                                                <span class="author"><a href="https://rohrbach.vision/">Marcus
+                                                        Rohrbach</a></span>,
+                                                <span class="author"><a
+                                                        href="https://scholar.google.com/citations?user=JFEHAwIAAAAJ&hl=en">Zhicheng
+                                                        Yan</a></span>,
+                                                <span class="author"><a href="https://agordo.github.io/">Albert
+                                                        Gordo</a></span>,
+                                                <span class="author"><a
+                                                        href="https://sites.google.com/site/jshfeng/home">Jiashi
+                                                        Feng</a></span>,
+                                                <span class="author"><a href="https://www.skamalas.com/">Yannis
+                                                        Kalantidis</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1910.09217">[Paper]</a>
+                                                <a
+                                                    href="https://github.com/facebookresearch/classifier-balancing">[Code]</a>
+                                                <a
+                                                    href="https://docs.google.com/presentation/d/1ALgcp2RBaC7T9Pbgh4qciZ2gFSc_yV_ajfV78RCjLhs/edit?usp=sharing">[Slides]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top-news'>
+                                        <div class="col-sm-3 news-date">
+                                            <p></p> 2019
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/nds.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                On Network Design Spaces for Visual Recognition
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICCV 2019
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a
+                                                        href="https://alexander-kirillov.github.io/">Ilija
+                                                        Radosavovic</a></span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Justin
+                                                        Johnson</a></span>,
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Wan-Yen
+                                                        Lo</a></span>,
+                                                <span class="author"><a href="https://pdollar.github.io/">Piotr
+                                                        Dollár</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1905.13214">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/nds">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/randwire.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Exploring Randomly Wired Neural Networks for Image Recognition
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICCV 2019
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a
+                                                        href="https://alexander-kirillov.github.io/">Alexander
+                                                        Kirillov</a></span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Ross
+                                                        Girshick</a></span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1904.01569">[Paper]</a>
+                                                <a href="https://www.youtube.com/watch?v=6be4l4GK_U8">[Talk]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Oral Presentation
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top-news'>
+
+                                        <div class="col-sm-3 news-date">
+                                            <p></p> Previous
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/thesis.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Deep Representation Learning with Induced Structural Priors
+                                            </div>
+                                            <div class='paper-desc'>
+                                                Ph.D. Thesis, UC San Diego 2018
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>
+                                            </div>
+                                            <div>
+                                                <a href="https://escholarship.org/uc/item/4t2045b6">[Thesis]</a>
+                                                <a href="https://www.youtube.com/watch?v=siW-Vjuq040">[Talk
+                                                    @AI2]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/s3d.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Rethinking Spatiotemporal Feature Learning: Speed-Accuracy
+                                                Trade-offs in
+                                                Video Classification
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ECCV 2018
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://chensun.me/">Chen
+                                                        Sun</a></span>,
+                                                <span class="author"><a href="http://jonathan-huang.org/">Jonathan
+                                                        Huang</a></span>,
+                                                <span class="author"><a href="https://www.cs.ubc.ca/~murphyk/">Kevin
+                                                        Murphy</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1712.04851">[Paper]</a>
+                                                <a
+                                                    href="https://github.com/tensorflow/models/blob/master/research/slim/nets/s3dg.py">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/ascn.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Attentional ShapeContextNet for Point Cloud Recognition
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2018
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie*</span>,
+                                                <span class="author"><a
+                                                        href="https://www.linkedin.com/in/sainan-stephanie-liu/">Sainan
+                                                        Liu*</a></span>,
+                                                <span class="author"><a
+                                                        href="https://www.linkedin.com/in/zeyu-chen-542356130/">Zeyu
+                                                        Chen</a></span>,
+                                                <span class="author"><a href="https://pages.ucsd.edu/~ztu/">Zhuowen
+                                                        Tu</a></span>
+                                            </div>
+                                            <div>
+                                                <a
+                                                    href="https://pages.ucsd.edu/~ztu/publication/cvpr18_ascn.pdf">[Paper]</a>
+                                                <a href="https://github.com/umyta/A-SCN">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/resnext.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Aggregated Residual Transformations for Deep Neural Networks
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2017
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://www.rossgirshick.info/">Ross
+                                                        Girshick</a></span>,
+                                                <span class="author"><a href="https://pdollar.github.io/">Piotr
+                                                        Dollár</a></span>,
+                                                <span class="author"><a href="https://pages.ucsd.edu/~ztu/">Zhuowen
+                                                        Tu</a></span>,
+                                                <span class="author"><a href="http://kaiminghe.com/">Kaiming
+                                                        He</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1611.05431">[Paper]</a>
+                                                <a href="https://github.com/facebookresearch/ResNeXt">[Code]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/convpp.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Top-down Learning for Structured Labeling with Convolutional
+                                                Pseudoprior
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ECCV 2016
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie*</span>,
+                                                <span class="author"><a href="https://www.cs.cornell.edu/~xhuang/">Xun
+                                                        Huang*</a></span>,
+                                                <span class="author"><a href="https://pages.ucsd.edu/~ztu/">Zhuowen
+                                                        Tu</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1511.07409">[Paper]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/hed.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Holistically-Nested Edge Detection
+                                            </div>
+                                            <div class='paper-desc'>
+                                                ICCV 2015
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a href="https://pages.ucsd.edu/~ztu/">Zhuowen
+                                                        Tu</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1504.06375">[Paper]</a>
+                                                <a href="https://github.com/s9xie/hed">[Code]</a>
+                                                <a href="pdf/hed_ijcv.pdf">[IJCV version]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Marr Prize Honorable Mention
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/dsn.jpeg' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Deeply-Supervised Nets
+                                            </div>
+                                            <div class='paper-desc'>
+                                                AISTATS 2015
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author"><a href="https://chl260.github.io/">Chen-Yu
+                                                        Lee*</a></span>,
+                                                <span class="author sx">Saining Xie*</span>,
+                                                <span class="author"><a
+                                                        href="https://www.linkedin.com/in/patrick-w-gallagher/">Patrick
+                                                        Gallagher</a>*</span>,
+                                                <span class="author"><a
+                                                        href="https://sse.cuhk.edu.cn/en/faculty/zhangzhengyou"></a>Zhengyou
+                                                    Zhang</span>,
+                                                <span class="author"><a href="https://pages.ucsd.edu/~ztu/">Zhuowen
+                                                        Tu</a></span>
+                                            </div>
+                                            <div>
+                                                <a href="https://arxiv.org/abs/1409.5185">[Paper]</a>
+                                                <a href="https://github.com/s9xie/DSN">[Code]</a>
+                                            </div>
+                                            <div class='paper-highlight'>
+                                                Oral Presentation at the NeurIPS'14 Deep Learning Workshop
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='row vspace-top'>
+                                        <div class="col-sm-3">
+                                            <img src='imgs/hyperclass.png' class='img-fluid'>
+                                        </div>
+                                        <div class="col">
+                                            <div class='paper-title'>
+                                                Hyper-class Augmented and Regularized Deep Learning for
+                                                Fine-grained
+                                                Image
+                                                Classification
+                                            </div>
+                                            <div class='paper-desc'>
+                                                CVPR 2015
+                                            </div>
+                                            <div class="paper-author">
+                                                <span class="author sx">Saining Xie</span>,
+                                                <span class="author"><a
+                                                        href="https://homepage.cs.uiowa.edu/~tyng/">Tianbao
+                                                        Yang</a></span>,
+                                                <span class="author"><a href="http://www.xiaoyumu.com//">Xiaoyu
+                                                        Wang</a></span>,
+                                                <span class="author"><a
+                                                        href="https://www.linkedin.com/in/yuanqing-lin-8666789/">Yuanqing
+                                                        Lin</a></span>
+                                            </div>
+                                            <div>
+                                                <a
+                                                    href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Xie_Hyper-Class_Augmented_and_2015_CVPR_paper.pdf">[Paper]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id='footer' class='vspace-top'>
+                            <div style="text-align:center">
+                                Last updated: Oct 2025 <a href="index.html#Home">🔝 Back to Top</a>
+                            </div>
+                            <div>
+                            </div>
+                            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                            <!-- Include all compiled plugins (below), or include individual files as needed -->
+                            <script src="js/bootstrap.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                            <script>
+                            (function() {
+                                var el = document.getElementById('solaris-authors');
+                                if (el && Math.random() < 0.5) {
+                                    el.textContent = el.textContent.replace(
+                                        'Oscar Michel†*, Georgy Savva†*,',
+                                        'Georgy Savva†*, Oscar Michel†*,'
+                                    );
+                                }
+                            })();
+                            (function() {
+                                var emailSpans = document.querySelectorAll('.email[data-user][data-domain]');
+                                emailSpans.forEach(function(span) {
+                                    var user = span.getAttribute('data-user');
+                                    var domain = span.getAttribute('data-domain');
+                                    if (!user || !domain) return;
+                                    var text = user + ' [at] ' + domain.replace(/\./g, ' [dot] ');
+                                    var link = document.createElement('a');
+                                    link.href = 'mailto:' + user + '@' + domain;
+                                    link.textContent = text;
+                                    span.textContent = '';
+                                    span.appendChild(link);
+                                });
+                            })();
+                            </script>
+</body>
+
+</html>
+
