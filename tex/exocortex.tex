@@ -1,0 +1,48 @@
+\documentclass{article}
+\title{Exocortex}
+\author{Ryan Marr}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Exocortex began as a Neovim plugin and gradually expanded into an LLM-assisted
+knowledge management system. Beyond an expressive, Vim-native interface for
+reviewing and accepting LLM-generated code changes, Exocortex organizes
+conversations with LLMs as a knowledge graph. That graph is the foundation for
+GraphRAG, letting future interactions retrieve relevant context and build on
+previous ideas.
+\end{abstract}
+
+\section{Motivation}
+
+Conversations with a language model are stored as transcripts: linear, append-only,
+and effectively write-only. The reasoning is in there somewhere, but nothing about
+the format makes it retrievable, and so the same ground gets re-derived from scratch
+in the next session.
+
+The unit worth keeping is not the conversation but the \emph{idea}, along with the
+edges connecting it to the ideas it came from.
+
+\section{Components}
+
+\begin{itemize}
+  \item \resumeItem{Vim-native review}{An interface for reviewing and accepting
+  LLM-generated code changes without leaving the editor, using motions and text
+  objects rather than a chat sidebar.}
+
+  \item \resumeItem{Knowledge graph}{Conversations are decomposed into nodes and
+  the relationships between them, rather than stored as flat transcripts.}
+
+  \item \resumeItem{GraphRAG retrieval}{The graph backs retrieval for later
+  interactions, so a new question is answered with the context of what was already
+  worked out.}
+\end{itemize}
+
+\section{Status}
+
+Active. Source at
+\href{https://github.com/rmarrcode/exocortex.nvim}{github.com/rmarrcode/exocortex.nvim}.
+
+\end{document}

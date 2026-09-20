@@ -1,0 +1,51 @@
+\documentclass{article}
+\title{GraphAllocBench}
+\author{Zhiheng Jiang, Yunzhe Wang, Ryan Marr, Ellen Novoseller, Benjamin T. Files, Volkan Ustun}
+\date{MoDeM workshop, IJCAI-ECAI}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A flexible benchmark for preference-conditioned multi-objective policy learning.
+GraphAllocBench provides an environment for multi-objective RL algorithms, used to
+test their capacity to manage many conflicting objectives in a complex resource
+management scenario.
+\end{abstract}
+
+\section{Motivation}
+
+Most RL benchmarks hand the agent a single scalar reward, which quietly assumes the
+hard part --- deciding how much one objective is worth in terms of another --- has
+already been solved by whoever wrote the reward function.
+
+Real allocation problems do not arrive pre-scalarized. A policy is useful only if it
+can be conditioned on a stated preference over objectives at evaluation time.
+
+\section{The benchmark}
+
+\begin{itemize}
+  \item \resumeItem{Graph-structured allocation}{Agents and resources form a graph,
+  and the policy decides how the resources are assigned across it.}
+
+  \item \resumeItem{Conflicting objectives}{The environment is built so that
+  objectives genuinely trade off against one another, rather than being jointly
+  maximizable.}
+
+  \item \resumeItem{Preference conditioning}{Policies are conditioned on a
+  preference vector, so a single trained policy is evaluated across the whole
+  trade-off surface instead of one point on it.}
+
+  \item \resumeItem{Flexibility}{Problem size and objective structure are
+  configurable, making the benchmark usable as a stress test rather than a single
+  fixed task.}
+\end{itemize}
+
+\section{Publication}
+
+Zhiheng Jiang, Yunzhe Wang, \textbf{Ryan Marr}, Ellen Novoseller, Benjamin T. Files,
+Volkan Ustun. ``GraphAllocBench: A Flexible Benchmark for Preference-Conditioned
+Multi-Objective Policy Learning.'' \textit{Multi-Objective Decision Making (MoDeM)
+workshop, IJCAI-ECAI.}
+
+\end{document}

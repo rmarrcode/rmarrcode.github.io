@@ -1,43 +1,215 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <title>Resume | Ryan Marr</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="imgs/favicon.svg" type="image/svg+xml">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font.css">
-    <style>
-        header { width: 100%; height: 45px; margin-top: 0px; text-align: center; background-color: #071f3d; position: fixed; z-index: 2 }
-        div.navleft a:link, div.navleft a:visited, div.navright a:link, div.navright a:visited { color: #FFFFFF; text-decoration: none }
-        div.navright a:hover, div.navleft a:hover { text-decoration: underline }
-        div.header { line-height: 45px }
-        div.navleft { float: left; padding-left: 90px; font-size: 1.4em; font-weight: 600 }
-        div.navright { float: right; padding-left: 20px; padding-right: 20px; font-size: 1.2em }
-        div.navright-group { float: right; display: flex; align-items: center; }
-        body { font-family: 'Lato', Verdana, Helvetica, sans-serif; font-size: 16px; background-color: #FFFFFF; color: #4F6371; }
-        h1 { font-weight: 300; font-size: 2rem; }
-        .page-content { padding-top: 105px; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/paper.css">
 </head>
-<body>
+
+<body class="paper">
     <div class='outercontainer'>
         <header>
             <div class="container header">
                 <div class="navleft text"><a href="index.html#Home">Ryan Marr</a></div>
                 <div class="navright-group">
-                    <div class="navright text"><a href="essay.html">Essay</a></div>
-                    <div class="navright text"><a href="projects.html">Projects</a></div>
                     <div class="navright text"><a href="resume.html">Resume</a></div>
+                    <div class="navright text"><a href="projects.html">Projects</a></div>
+                    <div class="navright text"><a href="essays.html">Essays</a></div>
                 </div>
             </div>
         </header>
-        <div class='container page-content'>
-            <div class='row vspace-top'>
-                <div class='col offset-sm-1'>
-                    <h1>Resume</h1>
+
+        <div class="sheet">
+
+            <div class="masthead">
+                <h1>Ryan Marr</h1>
+                <div class="subtitle">Machine learning engineer and researcher &middot; Los Angeles, CA</div>
+                <div class="contact">
+                    <div><span class="label">email</span> <span class="email" data-user="r.marr747" data-domain="gmail.com"></span></div>
+                    <div><span class="label">linkedin</span> <a href="https://www.linkedin.com/in/ryan-marr-8b88a8170/">ryan-marr-8b88a8170</a></div>
+                    <div><span class="label">github</span> <a href="https://github.com/rmarrcode">rmarrcode</a></div>
                 </div>
             </div>
+            <div class="rule-thin"></div>
+
+            <nav class="toc">
+                <h2>Contents</h2>
+                <ol>
+                    <li><a href="#education">Education &amp; Skills</a></li>
+                    <li><a href="#engineering">ML Engineering</a></li>
+                    <li><a href="#research">ML Research</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ol>
+            </nav>
+
+            <section id="education">
+                <h2>Education &amp; Skills</h2>
+                <div class="cols">
+                    <div>
+                        <div class="entry">
+                            <div class="entry-head">
+                                <span class="org">University of Southern California</span>
+                                <span class="meta">Los Angeles, CA</span>
+                            </div>
+                            <div class="entry-sub">M.S. Computer Science, AI focus &middot; Aug 2023 &ndash; May 2025</div>
+                        </div>
+                        <div class="entry">
+                            <div class="entry-head">
+                                <span class="org">University of Minnesota</span>
+                                <span class="meta">Minneapolis, MN</span>
+                            </div>
+                            <div class="entry-sub">B.S. Computer Science &middot; Aug 2018 &ndash; May 2021</div>
+                        </div>
+                    </div>
+                    <div>
+                        <dl class="skills">
+                            <dt>Languages</dt>
+                            <dd>Python, C/C++, Unix scripting</dd>
+                            <dt>Tools</dt>
+                            <dd>PyTorch, JAX, CUDA, AWS, Docker, Git, Postgres, Django, Pandas, NumPy, React</dd>
+                            <dt>Knowledge</dt>
+                            <dd>Deep learning, full stack</dd>
+                        </dl>
+                    </div>
+                </div>
+            </section>
+
+            <section id="engineering">
+                <h2>Machine Learning Engineering</h2>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org">Hidonix</span>
+                        <span class="meta">Los Angeles, CA &middot; May 2025 &ndash; present</span>
+                    </div>
+                    <ul class="items">
+                        <li><span class="term">Continual learning research.</span> Partnering with Army Research Labs to build adaptive ML systems capable of real-time learning from limited data under test-time distribution shift.</li>
+                        <li><span class="term">Text-to-video retrieval.</span> Designed the end-to-end model and infrastructure for natural-language-driven retrieval of video matching arbitrary text queries.</li>
+                        <li><span class="term">Multi-biometric recognition security.</span> Developed multi-modal biometric models integrating fingerprint, iris, and palm-vein recognition to verify organizational membership.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org">USC Alzheimer's Therapeutic Research Institute</span>
+                        <span class="meta">San Diego, CA &middot; Sep 2021 &ndash; Oct 2023</span>
+                    </div>
+                    <ul class="items">
+                        <li><span class="term">Overview.</span> ATRI advances Alzheimer's research by building comprehensive biomarker datasets in clinical trials.</li>
+                        <li><span class="term">Imaging pipeline.</span> Built an imaging pipeline to transfer DICOM scans between MRI/PET sites and the Mayo Clinic &mdash; useful for clinical trials that require scans to be anonymous and error-free.</li>
+                        <li><span class="term">U-Net pipeline.</span> Designed a pipeline and a U-Net to generate image-segmented scans.</li>
+                        <li><span class="term">Defacing algorithm.</span> Implemented a defacing algorithm to anonymize medical scans. Previously, scans could be matched to participant photos with about 80% accuracy; defacing dropped the match rate to around 2%.</li>
+                        <li><span class="term">Study website.</span> Devised a report page to track pipeline status, monitoring total uploads and site error rates.</li>
+                        <li><span class="term">Clinical trial management.</span> Communicated with sites to check on scan uploads when errors arose in the process.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="research">
+                <h2>Machine Learning Research</h2>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org">USC Institute for Creative Technologies</span>
+                        <span class="meta">Los Angeles, CA &middot; Sep 2023 &ndash; May 2025</span>
+                    </div>
+                    <ul class="items">
+                        <li><span class="term">Overview.</span> Research at the Human Adaptive Teaming Systems lab at USC, on integrating human instruction into RL systems.</li>
+                        <li><span class="term">Informed initialized RL networks.</span> Developed a technique to integrate expert military instruction with algorithmic strategy, discovering optimal strategies in 30% of the compute time of baseline algorithms.</li>
+                        <li><span class="term">Resource allocation multi-objective environment.</span> Created an environment for multi-objective RL algorithms, used to test their capacity to manage many conflicting objectives in a complex management scenario.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org">Princeton University</span>
+                        <span class="meta">Princeton, NJ &middot; May 2023 &ndash; Sep 2023</span>
+                    </div>
+                    <ul class="items">
+                        <li><span class="term">Overview.</span> <em>Generative Modeling for Inverse Crystalline Materials Design.</em> Constructed a GFlowNet to algorithmically sample crystals according to desired properties; published at ICLR 2025.</li>
+                        <li><span class="term">GFlowNet DAG.</span> Developed the directed acyclic graph that iteratively samples atoms to join each crystal, with neural networks assigning probabilities to adjacent nodes to maximize rewards.</li>
+                        <li><span class="term">Reverse sampler.</span> Researched a method to optimize generation of valuable crystal designs by computationally decomposing high-reward crystals, a 7% increase in the variance of valuable designs.</li>
+                        <li><span class="term">Crystal visualization.</span> Visualized final crystal structures, making results easier to interpret and communicate.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="publications">
+                <h2>Publications</h2>
+                <ol class="pubs">
+                    <li>
+                        <span class="authors">Zhiheng Jiang, Yunzhe Wang, <span class="me">Ryan Marr</span>, Ellen Novoseller, Benjamin T. Files, Volkan Ustun.</span>
+                        &ldquo;GraphAllocBench: A Flexible Benchmark for Preference-Conditioned Multi-Objective Policy Learning.&rdquo;
+                        <span class="venue">Multi-Objective Decision Making (MoDeM) workshop, IJCAI-ECAI.</span>
+                    </li>
+                    <li>
+                        <span class="authors">Rees Chang, Alex Guerra, Nick Richardson, Ni Zhan, Sulin Liu, Angela Pak, <span class="me">Ryan Marr</span>, Alex M. Ganose, Ryan P. Adams, Elif Ertekin.</span>
+                        &ldquo;Crystal Generative Modeling with Explicit Autoregressive Conditional Likelihoods and Nontrivial Space Group Stabilizers.&rdquo;
+                        <span class="venue">ICLR 2025.</span>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org"><a href="project.html?p=duct">Duct</a></span>
+                        <span class="meta"><a href="https://github.com/rmarrcode/duct">github.com/rmarrcode/duct</a></span>
+                    </div>
+                    <p class="abstract">A developer framework that harnesses the strengths of human and LLM code writing to create APIs. Users formally specify pre- and post-conditions for their API and an LLM completes it and verifies its correctness. The LLM is fine-tuned with reinforcement learning to prove the API correct, so APIs can be written quickly and correctly while keeping users in the loop.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org"><a href="project.html?p=exocortex">Exocortex</a></span>
+                        <span class="meta"><a href="https://github.com/rmarrcode/exocortex.nvim">github.com/rmarrcode/exocortex.nvim</a></span>
+                    </div>
+                    <p class="abstract">Began as a Neovim plugin and gradually expanded into an LLM-assisted knowledge management system. Beyond an expressive, Vim-native interface for reviewing and accepting LLM-generated code changes, Exocortex organizes conversations with LLMs as a knowledge graph. That graph is the foundation for GraphRAG, letting future interactions retrieve relevant context and build on previous ideas.</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-head">
+                        <span class="org"><a href="https://github.com/rmarrcode/mend">Mend</a> <span class="note">(in progress)</span></span>
+                        <span class="meta"><a href="https://github.com/rmarrcode/mend">github.com/rmarrcode/mend</a></span>
+                    </div>
+                    <p class="abstract">A neuro-symbolic program repair tool. Given a bug description, Mend discovers a formal description of the conditions that trigger the bug and infers the desired behavior, then generates a new implementation satisfying those formal constraints. The symbolic approach collaborates with fine-tuned LLMs specialized for the various stages of the pipeline.</p>
+                </div>
+            </section>
+
+            <footer class="colophon">
+                Last updated September 2026.
+            </footer>
+
         </div>
     </div>
+
+    <script>
+        (function () {
+            var emailSpans = document.querySelectorAll('.email[data-user][data-domain]');
+            emailSpans.forEach(function (span) {
+                var user = span.getAttribute('data-user');
+                var domain = span.getAttribute('data-domain');
+                if (!user || !domain) return;
+                var text = user + ' [at] ' + domain.replace(/\./g, ' [dot] ');
+                var link = document.createElement('a');
+                link.href = 'mailto:' + user + '@' + domain;
+                link.textContent = text;
+                span.textContent = '';
+                span.appendChild(link);
+            });
+        })();
+    </script>
 </body>
+
 </html>

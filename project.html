@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Project | Ryan Marr</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="imgs/favicon.svg" type="image/svg+xml">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/paper.css">
+</head>
+
+<body class="paper">
+    <div class='outercontainer'>
+        <header>
+            <div class="container header">
+                <div class="navleft text"><a href="index.html#Home">Ryan Marr</a></div>
+                <div class="navright-group">
+                    <div class="navright text"><a href="resume.html">Resume</a></div>
+                    <div class="navright text"><a href="projects.html">Projects</a></div>
+                    <div class="navright text"><a href="essays.html">Essays</a></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="sheet">
+            <p><a class="backlink" href="projects.html">all projects</a></p>
+
+            <div class="masthead">
+                <h1 id="doc-title">&nbsp;</h1>
+                <div class="subtitle" id="doc-subtitle"></div>
+            </div>
+            <div class="rule-thin"></div>
+
+            <nav class="toc" id="toc" hidden>
+                <h2>Contents</h2>
+                <ol></ol>
+            </nav>
+
+            <div class="tex" id="doc"></div>
+
+            <footer class="colophon">
+                <span class="source-link">Rendered from <a id="src-link" href="#">its LaTeX source</a>.</span>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/tex.js"></script>
+    <script>
+        (function () {
+            /* only these slugs may be loaded, so the ?p= parameter can't point anywhere else */
+            var PROJECTS = {
+                'duct': { thumb: 'imgs/projects/duct.svg', repo: 'https://github.com/rmarrcode/duct' },
+                'exocortex': { thumb: 'imgs/projects/exocortex.svg', repo: 'https://github.com/rmarrcode/exocortex.nvim' },
+                'verified-kernel': { thumb: 'imgs/projects/verified-kernel.svg', repo: null },
+                'informed-initialization': { thumb: 'imgs/projects/informed-initialization.svg', repo: null },
+                'graph-alloc-bench': { thumb: 'imgs/projects/graph-alloc-bench.svg', repo: null }
+            };
+
+            var doc = document.getElementById('doc');
+            var titleEl = document.getElementById('doc-title');
+            var subEl = document.getElementById('doc-subtitle');
+
+            function fail(msg) {
+                titleEl.textContent = 'Not found';
+                doc.innerHTML = '<div class="tex-error">' + msg +
+                    ' <a href="projects.html">Back to the project list.</a></div>';
+            }
+
+            var slug = (new URLSearchParams(location.search).get('p') || '').trim();
+            if (!Object.prototype.hasOwnProperty.call(PROJECTS, slug)) {
+                fail('No project by that name.');
+                return;
+            }
+
+            var src = 'tex/' + slug + '.tex';
+            document.getElementById('src-link').href = src;
+
+            fetch(src, { cache: 'no-cache' })
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.text();
+                })
+                .then(function (text) {
+                    var out = TeX.render(text);
+
+                    var name = out.titleText || slug;
+                    document.title = name + ' | Ryan Marr';
+                    titleEl.innerHTML = out.title || name;
+
+                    var bits = [];
+                    if (out.date) bits.push(out.date);
+                    if (out.author) bits.push(out.author);
+                    subEl.innerHTML = bits.join(' · ');
+
+                    doc.innerHTML = out.html;
+
+                    /* add the repo link only if the write-up doesn't already carry it */
+                    var meta = PROJECTS[slug];
+                    if (meta.repo && doc.innerHTML.indexOf(meta.repo) === -1) {
+                        var p = document.createElement('p');
+                        p.innerHTML = '<a href="' + meta.repo + '">' +
+                            meta.repo.replace(/^https?:\/\//, '') + '</a>';
+                        doc.appendChild(p);
+                    }
+
+                    /* build a table of contents when the piece is long enough to need one */
+                    var heads = doc.querySelectorAll('h2');
+                    if (heads.length >= 3) {
+                        var toc = document.getElementById('toc');
+                        var ol = toc.querySelector('ol');
+                        Array.prototype.forEach.call(heads, function (h) {
+                            if (!h.id) return;
+                            var li = document.createElement('li');
+                            var a = document.createElement('a');
+                            a.href = '#' + h.id;
+                            a.textContent = h.textContent;
+                            li.appendChild(a);
+                            ol.appendChild(li);
+                        });
+                        if (ol.children.length) toc.hidden = false;
+                    }
+                })
+                .catch(function (e) {
+                    fail('Could not load <code>' + src + '</code> (' + e.message + ').' +
+                        ' If you are opening this file directly from disk, serve the folder over HTTP instead.');
+                });
+        })();
+    </script>
+</body>
+
+</html>

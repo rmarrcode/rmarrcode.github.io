@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" fill="#f7f6ee"/>
+  <rect x="0.5" y="0.5" width="299" height="199" fill="none" stroke="#dcdbd0"/>
+  <g stroke="#9c9c92" stroke-width="1" fill="none">
+    <path d="M150 62 L88 104 M150 62 L212 104 M88 104 L118 146 M88 104 L212 104 M212 104 L182 146 M118 146 L182 146 M150 62 L150 104 M150 104 L118 146 M150 104 L182 146"/>
+  </g>
+  <g fill="#fffffa" stroke="#1a1a1a" stroke-width="1.2">
+    <circle cx="150" cy="62" r="11"/>
+    <circle cx="88" cy="104" r="8"/>
+    <circle cx="212" cy="104" r="8"/>
+    <circle cx="150" cy="104" r="8"/>
+  </g>
+  <g fill="#fffffa" stroke="#3c3c38" stroke-width="1.2">
+    <circle cx="118" cy="146" r="8"/>
+    <circle cx="182" cy="146" r="8"/>
+  </g>
+  <g font-family="Source Serif 4, Baskerville, Georgia, serif" fill="#1a1a1a">
+    <text x="150" y="63" text-anchor="middle" font-size="11" dominant-baseline="central">&#8704;</text>
+    <text x="150" y="30" text-anchor="middle" font-size="15" font-style="italic" fill="#5c5c57">conversation as graph</text>
+    <text x="150" y="176" text-anchor="middle" font-size="12" letter-spacing="0.08em" fill="#5c5c57">EXOCORTEX</text>
+  </g>
+</svg>

@@ -1,43 +1,211 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <title>Projects | Ryan Marr</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="imgs/favicon.svg" type="image/svg+xml">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font.css">
-    <style>
-        header { width: 100%; height: 45px; margin-top: 0px; text-align: center; background-color: #071f3d; position: fixed; z-index: 2 }
-        div.navleft a:link, div.navleft a:visited, div.navright a:link, div.navright a:visited { color: #FFFFFF; text-decoration: none }
-        div.navright a:hover, div.navleft a:hover { text-decoration: underline }
-        div.header { line-height: 45px }
-        div.navleft { float: left; padding-left: 90px; font-size: 1.4em; font-weight: 600 }
-        div.navright { float: right; padding-left: 20px; padding-right: 20px; font-size: 1.2em }
-        div.navright-group { float: right; display: flex; align-items: center; }
-        body { font-family: 'Lato', Verdana, Helvetica, sans-serif; font-size: 16px; background-color: #FFFFFF; color: #4F6371; }
-        h1 { font-weight: 300; font-size: 2rem; }
-        .page-content { padding-top: 105px; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/paper.css">
 </head>
-<body>
+
+<body class="paper">
     <div class='outercontainer'>
         <header>
             <div class="container header">
                 <div class="navleft text"><a href="index.html#Home">Ryan Marr</a></div>
                 <div class="navright-group">
-                    <div class="navright text"><a href="essay.html">Essay</a></div>
-                    <div class="navright text"><a href="projects.html">Projects</a></div>
                     <div class="navright text"><a href="resume.html">Resume</a></div>
+                    <div class="navright text"><a href="projects.html">Projects</a></div>
+                    <div class="navright text"><a href="essays.html">Essays</a></div>
                 </div>
             </div>
         </header>
-        <div class='container page-content'>
-            <div class='row vspace-top'>
-                <div class='col offset-sm-1'>
-                    <h1>Projects</h1>
-                </div>
+
+        <div class="sheet sheet-wide">
+
+            <div class="masthead">
+                <h1>Projects</h1>
+                <div class="subtitle">Formal methods, reinforcement learning, and language models.</div>
             </div>
+            <div class="rule-thin"></div>
+
+            <div class="filterbar" id="filterbar">
+                <span class="filter-label">filter</span>
+                <!-- tag buttons are generated from the entries below -->
+            </div>
+            <p class="filter-status" id="filter-status"></p>
+
+            <ul class="projects" id="project-list">
+
+                <li data-tags="formal-verification rl llms software-engineering">
+                    <div class="project-thumb">
+                        <a href="project.html?p=duct"><img src="imgs/projects/duct.svg" alt="Duct: a specification flows through an LLM into a machine-checked proof"></a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title"><a href="project.html?p=duct">Duct</a></div>
+                        <div class="project-tags">
+                            <span class="tag">formal verification</span>
+                            <span class="tag">rl</span>
+                            <span class="tag">llms</span>
+                            <span class="tag">software engineering</span>
+                        </div>
+                        <a class="more" href="project.html?p=duct">more</a>
+                    </div>
+                </li>
+
+                <li data-tags="llms gnns software-engineering">
+                    <div class="project-thumb">
+                        <a href="project.html?p=exocortex"><img src="imgs/projects/exocortex.svg" alt="Exocortex: conversations organized as a knowledge graph"></a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title"><a href="project.html?p=exocortex">Exocortex</a></div>
+                        <div class="project-tags">
+                            <span class="tag">llms</span>
+                            <span class="tag">gnns</span>
+                            <span class="tag">software engineering</span>
+                        </div>
+                        <a class="more" href="project.html?p=exocortex">more</a>
+                    </div>
+                </li>
+
+                <li data-tags="formal-verification rl llms software-engineering">
+                    <div class="project-thumb">
+                        <a href="project.html?p=verified-kernel"><img src="imgs/projects/verified-kernel.svg" alt="Verified Kernel: a grid of GPU threads under a universal correctness claim"></a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title"><a href="project.html?p=verified-kernel">Verified Kernel</a></div>
+                        <div class="project-tags">
+                            <span class="tag">formal verification</span>
+                            <span class="tag">rl</span>
+                            <span class="tag">llms</span>
+                            <span class="tag">software engineering</span>
+                        </div>
+                        <a class="more" href="project.html?p=verified-kernel">more</a>
+                    </div>
+                </li>
+
+                <li data-tags="rl">
+                    <div class="project-thumb">
+                        <a href="project.html?p=informed-initialization"><img src="imgs/projects/informed-initialization.svg" alt="Informed Initialization: a warm-started learning curve against a baseline"></a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title"><a href="project.html?p=informed-initialization">Informed Initialization</a></div>
+                        <div class="project-tags">
+                            <span class="tag">rl</span>
+                        </div>
+                        <a class="more" href="project.html?p=informed-initialization">more</a>
+                    </div>
+                </li>
+
+                <li data-tags="rl">
+                    <div class="project-thumb">
+                        <a href="project.html?p=graph-alloc-bench"><img src="imgs/projects/graph-alloc-bench.svg" alt="GraphAllocBench: a bipartite allocation between agents and resources"></a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title"><a href="project.html?p=graph-alloc-bench">GraphAllocBench</a></div>
+                        <div class="project-tags">
+                            <span class="tag">rl</span>
+                        </div>
+                        <a class="more" href="project.html?p=graph-alloc-bench">more</a>
+                    </div>
+                </li>
+
+            </ul>
+
+            <p class="empty-state" id="empty-state" hidden>No projects carry every selected tag.</p>
+
         </div>
     </div>
+
+    <script>
+        (function () {
+            var list = document.getElementById('project-list');
+            var bar = document.getElementById('filterbar');
+            var status = document.getElementById('filter-status');
+            var empty = document.getElementById('empty-state');
+            var entries = Array.prototype.slice.call(list.querySelectorAll('li'));
+
+            /* collect tags, in first-appearance order, with counts */
+            var order = [], counts = {};
+            entries.forEach(function (li) {
+                (li.getAttribute('data-tags') || '').split(/\s+/).filter(Boolean).forEach(function (t) {
+                    if (!counts[t]) { counts[t] = 0; order.push(t); }
+                    counts[t]++;
+                });
+            });
+
+            var active = {};
+
+            function label(t) { return t.replace(/-/g, ' '); }
+
+            order.forEach(function (t) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'tag';
+                b.setAttribute('aria-pressed', 'false');
+                b.setAttribute('data-tag', t);
+                b.innerHTML = label(t) + ' <span class="count">' + counts[t] + '</span>';
+                b.addEventListener('click', function () {
+                    if (active[t]) delete active[t]; else active[t] = true;
+                    b.setAttribute('aria-pressed', active[t] ? 'true' : 'false');
+                    apply();
+                });
+                bar.appendChild(b);
+            });
+
+            var clear = document.createElement('button');
+            clear.type = 'button';
+            clear.className = 'tag';
+            clear.textContent = 'all';
+            clear.addEventListener('click', function () {
+                active = {};
+                bar.querySelectorAll('button[data-tag]').forEach(function (b) {
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                apply();
+            });
+            bar.appendChild(clear);
+
+            function apply() {
+                var sel = Object.keys(active);
+                var shown = 0;
+                entries.forEach(function (li) {
+                    var tags = (li.getAttribute('data-tags') || '').split(/\s+/);
+                    var ok = sel.every(function (t) { return tags.indexOf(t) !== -1; });
+                    li.hidden = !ok;
+                    if (ok) shown++;
+                });
+                empty.hidden = shown !== 0;
+                if (!sel.length) {
+                    status.textContent = entries.length + ' projects.';
+                } else {
+                    status.textContent = shown + ' of ' + entries.length + ' projects tagged ' +
+                        sel.map(label).join(' + ') + '.';
+                }
+                var q = sel.length ? '#' + sel.join('+') : ' ';
+                history.replaceState(null, '', sel.length ? q : location.pathname);
+            }
+
+            /* deep link: projects.html#rl+llms */
+            var hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+            if (hash) {
+                hash.split('+').filter(Boolean).forEach(function (t) {
+                    if (counts[t]) {
+                        active[t] = true;
+                        var b = bar.querySelector('button[data-tag="' + t + '"]');
+                        if (b) b.setAttribute('aria-pressed', 'true');
+                    }
+                });
+            }
+            apply();
+        })();
+    </script>
 </body>
+
 </html>

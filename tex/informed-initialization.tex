@@ -1,0 +1,48 @@
+\documentclass{article}
+\title{Informed Initialization for RL Networks}
+\author{Ryan Marr}
+\date{2023--2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A technique for integrating expert military instruction with algorithmic strategy,
+developed at the Human Adaptive Teaming Systems lab at the USC Institute for
+Creative Technologies. Informed initialization discovered optimal strategies in
+30\% of the compute time required by baseline algorithms.
+\end{abstract}
+
+\section{Motivation}
+
+A reinforcement learning agent starting from a random initialization has to
+rediscover, through millions of samples, things a domain expert could have simply
+said out loud. In military planning domains that expertise already exists in
+written doctrine and in the heads of the people the system is meant to assist.
+
+The question is not whether to use that knowledge but how to inject it without
+giving up the agent's ability to find strategies the experts did not anticipate.
+
+\section{Method}
+
+\begin{itemize}
+  \item \resumeItem{Instruction as prior}{Expert instruction is encoded into the
+  network's initialization, so search begins from a region of policy space that
+  doctrine already endorses.}
+
+  \item \resumeItem{Preserved exploration}{The prior shapes where search starts,
+  not where it is allowed to go --- the agent remains free to depart from doctrine
+  when the return justifies it.}
+\end{itemize}
+
+\section{Results}
+
+Optimal strategies were discovered in roughly \textbf{30\% of the compute time} of
+baseline algorithms trained from scratch.
+
+\section{Context}
+
+Conducted at the USC Institute for Creative Technologies, Human Adaptive Teaming
+Systems lab, September 2023 -- May 2025.
+
+\end{document}

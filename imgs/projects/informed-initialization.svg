@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" fill="#f7f6ee"/>
+  <rect x="0.5" y="0.5" width="299" height="199" fill="none" stroke="#dcdbd0"/>
+  <g stroke="#1a1a1a" stroke-width="1.1" fill="none">
+    <path d="M46 142 H262"/><path d="M46 142 V38"/>
+  </g>
+  <g fill="none" stroke-width="1.6">
+    <path d="M46 138 C110 136 150 118 186 78 C206 58 232 50 262 48" stroke="#9c9c92" stroke-dasharray="5 4"/>
+    <path d="M46 96 C86 78 110 62 142 54 C182 45 222 44 262 44" stroke="#3c3c38"/>
+  </g>
+  <g font-family="Source Serif 4, Baskerville, Georgia, serif" fill="#5c5c57">
+    <text x="150" y="26" text-anchor="middle" font-size="15" font-style="italic">warm start vs. scratch</text>
+    <text x="154" y="90" font-size="11" fill="#3c3c38">informed init</text>
+    <text x="150" y="132" font-size="11">baseline</text>
+    <text x="258" y="158" text-anchor="end" font-size="10" font-style="italic">compute</text>
+    <text x="150" y="176" text-anchor="middle" font-size="12" letter-spacing="0.08em">INFORMED INITIALIZATION</text>
+  </g>
+</svg>

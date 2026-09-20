@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" fill="#f7f6ee"/>
+  <rect x="0.5" y="0.5" width="299" height="199" fill="none" stroke="#dcdbd0"/>
+  <g font-family="Source Serif 4, Baskerville, Georgia, serif" fill="#1a1a1a">
+    <text x="150" y="30" text-anchor="middle" font-size="15" font-style="italic" fill="#5c5c57">{ pre } C { post }</text>
+    <rect x="26" y="58" width="72" height="46" fill="#fffffa" stroke="#1a1a1a" stroke-width="1.2"/>
+    <text x="62" y="82" text-anchor="middle" font-size="13" dominant-baseline="central">spec</text>
+    <rect x="114" y="58" width="72" height="46" fill="#fffffa" stroke="#3c3c38" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="150" y="82" text-anchor="middle" font-size="13" dominant-baseline="central" fill="#3c3c38">llm</text>
+    <rect x="202" y="58" width="72" height="46" fill="#fffffa" stroke="#1a1a1a" stroke-width="1.2"/>
+    <text x="238" y="82" text-anchor="middle" font-size="15" dominant-baseline="central">&#8866;</text>
+    <g stroke="#1a1a1a" stroke-width="1.2" fill="none">
+      <path d="M98 81 h10"/><path d="M104 77 l5 4 -5 4"/>
+      <path d="M186 81 h10"/><path d="M192 77 l5 4 -5 4"/>
+      <path d="M238 104 v22 h-176 v-16"/>
+      <path d="M58 114 l4 -6 4 6"/>
+    </g>
+    <text x="150" y="146" text-anchor="middle" font-size="11" fill="#8a8a80" font-style="italic">reinforcement from proof signal</text>
+    <text x="150" y="176" text-anchor="middle" font-size="12" letter-spacing="0.08em" fill="#5c5c57">DUCT</text>
+  </g>
+</svg>
