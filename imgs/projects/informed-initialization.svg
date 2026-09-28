@@ -1,18 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
   <rect width="300" height="200" fill="#f7f6ee"/>
   <rect x="0.5" y="0.5" width="299" height="199" fill="none" stroke="#dcdbd0"/>
-  <g stroke="#1a1a1a" stroke-width="1.1" fill="none">
-    <path d="M46 142 H262"/><path d="M46 142 V38"/>
+  <g fill="#fffffa" stroke="#1a1a1a" stroke-width="1.2">
+    <path d="M54 150 C54 116 66 100 84 100 C102 100 114 116 114 150 Z"/>
+    <circle cx="84" cy="74" r="16"/>
   </g>
-  <g fill="none" stroke-width="1.6">
-    <path d="M46 138 C110 136 150 118 186 78 C206 58 232 50 262 48" stroke="#9c9c92" stroke-dasharray="5 4"/>
-    <path d="M46 96 C86 78 110 62 142 54 C182 45 222 44 262 44" stroke="#3c3c38"/>
+  <g fill="none" stroke="#1a1a1a" stroke-width="1.2">
+    <path d="M104 118 C116 110 126 104 138 101"/>
+    <circle cx="141" cy="100" r="3.5" fill="#fffffa"/>
   </g>
-  <g font-family="Source Serif 4, Baskerville, Georgia, serif" fill="#5c5c57">
-    <text x="150" y="26" text-anchor="middle" font-size="15" font-style="italic">warm start vs. scratch</text>
-    <text x="154" y="90" font-size="11" fill="#3c3c38">informed init</text>
-    <text x="150" y="132" font-size="11">baseline</text>
-    <text x="258" y="158" text-anchor="end" font-size="10" font-style="italic">compute</text>
-    <text x="150" y="176" text-anchor="middle" font-size="12" letter-spacing="0.08em">INFORMED INITIALIZATION</text>
+  <g fill="none" stroke="#3c3c38" stroke-width="1.2">
+    <path d="M150 100 H168" stroke-dasharray="4 3"/>
+    <path d="M164 96 l5 4 -5 4"/>
+  </g>
+  <g stroke="#3c3c38" stroke-width="1.2">
+    <path d="M194 62 v-8 M214 62 v-8 M234 62 v-8 M194 138 v8 M214 138 v8 M234 138 v8 M252 80 h8 M252 100 h8 M252 120 h8"/>
+  </g>
+  <rect x="176" y="62" width="76" height="76" fill="#fffffa" stroke="#3c3c38" stroke-width="1.2"/>
+  <g stroke="#9c9c92" stroke-width="1" fill="none">
+    <path d="M194 86 L214 76 M194 86 L214 100 M194 86 L214 124 M194 114 L214 76 M194 114 L214 100 M194 114 L214 124 M214 76 L234 100 M214 100 L234 100 M214 124 L234 100"/>
+  </g>
+  <g fill="#fffffa" stroke="#1a1a1a" stroke-width="1.1">
+    <circle cx="194" cy="86" r="4"/><circle cx="194" cy="114" r="4"/>
+    <circle cx="214" cy="76" r="4"/><circle cx="214" cy="100" r="4"/><circle cx="214" cy="124" r="4"/>
+    <circle cx="234" cy="100" r="4"/>
   </g>
 </svg>

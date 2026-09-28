@@ -1,0 +1,99 @@
+\documentclass{article}
+\title{Latent Policy Network}
+\author{Ryan Marr}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Latent Policy Network is a research framework for reinforcement learning policies
+that generate their own weights on the fly. It targets rapidly changing 1v1
+settings: the opponent has a hidden style that can switch mid-episode, and the
+agent encodes its recent interaction history into a context that produces the
+policy's weights, so it adapts to a new opponent without further training.
+\end{abstract}
+
+\begin{figure}
+\includegraphics{imgs/latent-policy-network.gif}
+\end{figure}
+
+\section{Motivation}
+
+A standard policy network carries one fixed set of weights, and so one fixed
+answer to every opponent. When the opponent changes strategy partway through an
+episode, the best a static policy can do is a compromise that is mediocre against
+everyone.
+
+If recent interaction reveals who the opponent is, the policy should be able to act
+on that --- not by retraining, but by producing different weights for the opponent
+in front of it.
+
+\section{Architecture}
+
+A context encoder reads the recent history of observations, and its output drives
+the actor. The framework compares four ways of letting context shape the policy:
+
+\begin{itemize}
+  \item \resumeItem{Static baseline}{A regular, non-adaptive actor-critic
+  (\texttt{static\_mlp}).}
+
+  \item \resumeItem{Hyper head}{The context network generates the weights of the
+  actor's final linear layer (\texttt{hyper\_head}).}
+
+  \item \resumeItem{FiLM}{The context network modulates the actor's features with
+  FiLM scale and shift parameters (\texttt{film}).}
+
+  \item \resumeItem{Full hypernetwork}{The context network generates every layer of
+  the actor (\texttt{full\_hyper}).}
+\end{itemize}
+
+Each is paired with a choice of context encoder: a mean over recent observations,
+a flattened window, a GRU, or a small Transformer. Policies are trained with PPO.
+
+\section{Environments}
+
+\begin{itemize}
+  \item \resumeItem{Repeated duel}{A vectorized 1v1 environment whose opponent has a
+  hidden style that can switch mid-episode. Evaluation tracks reward immediately
+  after a switch, during early adaptation, and once the policy has settled.}
+
+  \item \resumeItem{Public suite}{Adapters for OpenSpiel matrix and turn-based
+  games, PettingZoo rock-paper-scissors, MPE2, SlimeVolley, MAgent2 Battle, and
+  Footsies.}
+
+  \item \resumeItem{Melee Light}{Scripted opponents drawn from a pool of hidden
+  styles --- rushdown, spacer, zoner, mirror, anti-frequency, and others --- and
+  character matchups, switching mid-episode, so recent history identifies both
+  style and matchup.}
+\end{itemize}
+
+\section{Results}
+
+\begin{itemize}
+  \item \resumeItem{Repeated duel}{In a two-seed sweep, a full hypernetwork with a
+  GRU encoder reached a mean eval return of 42.3 against 33.3 for the static
+  baseline. In longer same-budget runs evaluated over 256 episodes it reached a
+  return of 66.9 and a 68.7\% win rate, against 58.8 and 64.7\% for the static
+  baseline.}
+
+  \item \resumeItem{Melee Light}{Against the scripted style pool, the full
+  hypernetwork with a GRU encoder was the only architecture with a repeatable edge
+  over the static baseline, winning 29.7\% of games against 18.8\%. Earlier runs
+  against the built-in CPU showed no reliable edge for any adaptive architecture.}
+\end{itemize}
+
+\begin{figure}
+\includegraphics{imgs/latent-policy-network-returns.svg}
+\caption{Mean eval return in the repeated duel, two seeds, 40 updates per run.
+Dark bars are adaptive architectures; the light bar is the static baseline.}
+\end{figure}
+
+\begin{figure}
+\includegraphics{imgs/latent-policy-network-winrate.svg}
+\caption{Win rate of the strongest adaptive architectures against the static
+baseline: the repeated duel after 120 updates (256 eval episodes), and Melee Light
+against the scripted style pool after 24 updates.}
+\end{figure}
+
+\end{document}

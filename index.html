@@ -90,7 +90,7 @@
         }
 
         div.container a {
-            color: #0c1d2f;
+            color: #2596be;
             text-decoration: none
         }
 
@@ -129,11 +129,23 @@
             padding: 60px;
         }
 
-        #portrait {
-            border: 3px solid #fffffa;
-            border-radius: 50%;
+        #portrait-frame {
+            width: 100%;
             aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #fffffa;
+        }
+
+        #portrait {
+            display: block;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            /* profile.png has a light circle drawn into its outermost ~3px
+               (radius 192-194.5 of 194.5). Zooming past it keeps that ring
+               outside the round frame, which clips it away. */
+            transform: scale(1.05);
         }
 
         #portrait-student {
@@ -317,8 +329,9 @@
                 </div>
                 <div class='row'>
                     <div class="col-sm-3 offset-sm-2">
-                        <!-- <img src='imgs/portrait.png' class='img-fluid' id='portrait'> -->
-                        <img src='imgs/profile.jpeg' class='img-fluid' id='portrait'>
+                        <div id='portrait-frame'>
+                            <img src='imgs/profile.png' class='img-fluid' id='portrait'>
+                        </div>
                     </div>
                     <div class="col-sm-5 offset-sm-1">
                         <div id='header-text-name'> Ryan Marr </div>
@@ -340,15 +353,15 @@
         <div class='container'>
             <div class='vspace-top'>
                     <h1>About Me</h1>
-			    <p>Hi I'm Ryan. I'm a machine learning engineer and researcher. Welcome to my site.</p>
+			    <p>Hi, I'm Ryan, a machine learning engineer and researcher.</p>
 
 			    <p>Previously I worked with several labs at the University of Southern California.
-			    At USC ATRI I built the <a href="https://atrinews.usc.edu/resources/neuroimaging-to-detect-and-treat-alzheimers"> neuroimaging pipeline </a> currently being used to study Alzhmeimer's Disease. 
-			    I also worked with the USC <a href="https://ict.usc.edu/research/labs-groups/human-inspired-adaptive-teaming-systems-hats/"> HATS group </a> on reinforcement learning. I focused on building systems that align human goals with AI systems.</p>
+			    At USC ATRI I built the <a href="https://atrinews.usc.edu/resources/neuroimaging-to-detect-and-treat-alzheimers">neuroimaging pipeline</a> used to study the efficacy and safety of Alzheimer's disease treatments.
+			    I also worked with the USC <a href="https://ict.usc.edu/research/labs-groups/human-inspired-adaptive-teaming-systems-hats/">HATS group</a> under Dr. Volkan Ustun on designing algorithms that align AI systems with human goals.</p>
 
-			    <p>Currently I work at Hidonix Industries as a machine learning research engineer.</p>
+			    <p>Currently I work at Hidonix Industries as a machine learning research engineer, where I train large vision and language models for security applications.</p>
 
-			    <p>In my spare time I do my own AI research. I use this site to share and document my projects. Most of my recent work involves verified AI, continual learning, and AI for science.</p>
+			    <p>In my spare time I do my own AI research and use this site to share my projects. Most of my recent work is in verified AI, continual learning, and AI for science.</p>
             </div>
         </div>
 

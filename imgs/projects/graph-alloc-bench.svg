@@ -11,10 +11,4 @@
     <circle cx="92" cy="58" r="9"/><circle cx="92" cy="98" r="9"/><circle cx="92" cy="138" r="9"/>
     <rect x="199" y="49" width="18" height="18"/><rect x="199" y="89" width="18" height="18"/><rect x="199" y="129" width="18" height="18"/>
   </g>
-  <g font-family="Source Serif 4, Baskerville, Georgia, serif" fill="#5c5c57">
-    <text x="150" y="28" text-anchor="middle" font-size="15" font-style="italic">preference-conditioned allocation</text>
-    <text x="78" y="166" text-anchor="middle" font-size="10">agents</text>
-    <text x="222" y="166" text-anchor="middle" font-size="10">resources</text>
-    <text x="150" y="190" text-anchor="middle" font-size="12" letter-spacing="0.08em">GRAPHALLOCBENCH</text>
-  </g>
 </svg>

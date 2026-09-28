@@ -288,6 +288,7 @@ ul.projects > li[hidden] { display: none; }
     /* keeps any replacement photograph black and white too */
     filter: grayscale(100%);
 }
+.project-thumb img.in-color { filter: none; }
 .project-thumb a { border-bottom: none; }
 
 .project-body { flex: 1 1 auto; min-width: 0; }
@@ -302,6 +303,7 @@ ul.projects > li[hidden] { display: none; }
 body.paper .project-title a { color: #000; border-bottom: none; }
 body.paper .project-title a:hover { color: var(--link); border-bottom: 1px solid var(--link); }
 .project-venue { font-size: 0.88rem; font-style: italic; color: var(--ink-muted); margin-bottom: 0.5rem; }
+.project-desc { margin: 0.25rem 0 0; line-height: 1.5; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.45rem 0 0.7rem; }
 .more {
     display: inline-block;
@@ -346,6 +348,7 @@ body.paper .project-title a:hover { color: var(--link); border-bottom: 1px solid
     color: var(--ink-muted);
 }
 .tex figure { margin: 1.4rem 0; text-align: center; }
+.tex figure img { max-width: 100%; height: auto; }
 .tex figcaption { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; margin-top: 0.4rem; }
 .tex .tex-center { text-align: center; }
 .tex-error {

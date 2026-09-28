@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/paper.css">
+    <link rel="stylesheet" href="css/paper.css?v=2">
 </head>
 
 <body class="paper">
@@ -31,7 +31,6 @@
 
             <div class="masthead">
                 <h1>Projects</h1>
-                <div class="subtitle">Formal methods, reinforcement learning, and language models.</div>
             </div>
             <div class="rule-thin"></div>
 
@@ -43,12 +42,27 @@
 
             <ul class="projects" id="project-list">
 
+                <li data-tags="rl">
+                    <div class="project-thumb">
+                        <a href="project.html?p=latent-policy-network"><img class="in-color" src="imgs/latent-policy-network.gif" alt="Latent Policy Network"></a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title"><a href="project.html?p=latent-policy-network">Latent Policy Network</a></div>
+                        <p class="project-desc">Extremely adaptable RL networks.</p>
+                        <div class="project-tags">
+                            <span class="tag">rl</span>
+                        </div>
+                        <a class="more" href="project.html?p=latent-policy-network">more</a>
+                    </div>
+                </li>
+
                 <li data-tags="formal-verification rl llms software-engineering">
                     <div class="project-thumb">
                         <a href="project.html?p=duct"><img src="imgs/projects/duct.svg" alt="Duct: a specification flows through an LLM into a machine-checked proof"></a>
                     </div>
                     <div class="project-body">
                         <div class="project-title"><a href="project.html?p=duct">Duct</a></div>
+			<p class="project-desc"> Formally verified web framework </p>
                         <div class="project-tags">
                             <span class="tag">formal verification</span>
                             <span class="tag">rl</span>
@@ -65,6 +79,7 @@
                     </div>
                     <div class="project-body">
                         <div class="project-title"><a href="project.html?p=exocortex">Exocortex</a></div>
+			<p class="project-desc"> The only good text editor </p>
                         <div class="project-tags">
                             <span class="tag">llms</span>
                             <span class="tag">gnns</span>
@@ -80,6 +95,7 @@
                     </div>
                     <div class="project-body">
                         <div class="project-title"><a href="project.html?p=verified-kernel">Verified Kernel</a></div>
+			<p class="project-desc"> Formally verified ML kernels </p>
                         <div class="project-tags">
                             <span class="tag">formal verification</span>
                             <span class="tag">rl</span>
@@ -92,10 +108,11 @@
 
                 <li data-tags="rl">
                     <div class="project-thumb">
-                        <a href="project.html?p=informed-initialization"><img src="imgs/projects/informed-initialization.svg" alt="Informed Initialization: a warm-started learning curve against a baseline"></a>
+                        <a href="project.html?p=informed-initialization"><img src="imgs/projects/informed-initialization.svg" alt="Informed Initialization: a person guiding an AI"></a>
                     </div>
                     <div class="project-body">
                         <div class="project-title"><a href="project.html?p=informed-initialization">Informed Initialization</a></div>
+			<p class="project-desc">Expert military instruction encoded into RL network initialization </p>
                         <div class="project-tags">
                             <span class="tag">rl</span>
                         </div>
@@ -109,6 +126,7 @@
                     </div>
                     <div class="project-body">
                         <div class="project-title"><a href="project.html?p=graph-alloc-bench">GraphAllocBench</a></div>
+                        <p class="project-desc">A benchmark for preference-conditioned multi-objective RL in a graph-structured resource allocation scenario.</p>
                         <div class="project-tags">
                             <span class="tag">rl</span>
                         </div>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 172" width="600" height="172" role="img" aria-label="Mean eval return by architecture in the repeated duel">
+  <g font-family="Baskerville, Georgia, serif">
+    <line x1="200.0" y1="0" x2="200.0" y2="150" stroke="#dcdbd0" stroke-width="1"/>
+    <text x="200.0" y="165" font-size="11" text-anchor="middle" fill="#5c5c57">0</text>
+    <line x1="268.8" y1="0" x2="268.8" y2="150" stroke="#dcdbd0" stroke-width="1"/>
+    <text x="268.8" y="165" font-size="11" text-anchor="middle" fill="#5c5c57">10</text>
+    <line x1="337.6" y1="0" x2="337.6" y2="150" stroke="#dcdbd0" stroke-width="1"/>
+    <text x="337.6" y="165" font-size="11" text-anchor="middle" fill="#5c5c57">20</text>
+    <line x1="406.4" y1="0" x2="406.4" y2="150" stroke="#dcdbd0" stroke-width="1"/>
+    <text x="406.4" y="165" font-size="11" text-anchor="middle" fill="#5c5c57">30</text>
+    <line x1="475.2" y1="0" x2="475.2" y2="150" stroke="#dcdbd0" stroke-width="1"/>
+    <text x="475.2" y="165" font-size="11" text-anchor="middle" fill="#5c5c57">40</text>
+    <line x1="544.0" y1="0" x2="544.0" y2="150" stroke="#dcdbd0" stroke-width="1"/>
+    <text x="544.0" y="165" font-size="11" text-anchor="middle" fill="#5c5c57">50</text>
+    <text x="190" y="15.0" font-size="12" text-anchor="end" dominant-baseline="central" fill="#1a1a1a">Full hypernetwork · GRU</text>
+    <path d="M200 6.0 H486.7 Q490.7 6.0 490.7 10.0 V20.0 Q490.7 24.0 486.7 24.0 H200 Z" fill="#3c3c38"/>
+    <text x="496.7" y="15.0" font-size="12" dominant-baseline="central" fill="#1a1a1a">42.3</text>
+    <text x="190" y="45.0" font-size="12" text-anchor="end" dominant-baseline="central" fill="#1a1a1a">Full hypernetwork · mean</text>
+    <path d="M200 36.0 H483.3 Q487.3 36.0 487.3 40.0 V50.0 Q487.3 54.0 483.3 54.0 H200 Z" fill="#3c3c38"/>
+    <text x="493.3" y="45.0" font-size="12" dominant-baseline="central" fill="#1a1a1a">41.8</text>
+    <text x="190" y="75.0" font-size="12" text-anchor="end" dominant-baseline="central" fill="#1a1a1a">Hyper head · attention</text>
+    <path d="M200 66.0 H477.6 Q481.6 66.0 481.6 70.0 V80.0 Q481.6 84.0 477.6 84.0 H200 Z" fill="#3c3c38"/>
+    <text x="487.6" y="75.0" font-size="12" dominant-baseline="central" fill="#1a1a1a">40.9</text>
+    <text x="190" y="105.0" font-size="12" text-anchor="end" dominant-baseline="central" fill="#1a1a1a">Hyper head · GRU</text>
+    <path d="M200 96.0 H477.0 Q481.0 96.0 481.0 100.0 V110.0 Q481.0 114.0 477.0 114.0 H200 Z" fill="#3c3c38"/>
+    <text x="487.0" y="105.0" font-size="12" dominant-baseline="central" fill="#1a1a1a">40.8</text>
+    <text x="190" y="135.0" font-size="12" text-anchor="end" dominant-baseline="central" fill="#1a1a1a">Static baseline · mean</text>
+    <path d="M200 126.0 H424.9 Q428.9 126.0 428.9 130.0 V140.0 Q428.9 144.0 424.9 144.0 H200 Z" fill="#8a8a80"/>
+    <text x="434.9" y="135.0" font-size="12" dominant-baseline="central" fill="#1a1a1a">33.3</text>
+    <line x1="200" y1="0" x2="200" y2="150" stroke="#5c5c57" stroke-width="1"/>
+  </g>
+</svg>
