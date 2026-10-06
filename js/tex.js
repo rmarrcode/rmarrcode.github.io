@@ -11,6 +11,7 @@
      \begin{document} \section \subsection \subsubsection \paragraph
      itemize / enumerate / description / quote / abstract / center
      verbatim / lstlisting / figure (with \caption, \includegraphics)
+     table / tabular (first row is the header; rules are ignored)
      \item  \resumeItem  \resumeSubItem
      \resumeWorkHeading  \resumeSubheading  \resumeProjectHeading
      \textbf \textit \emph \texttt \underline \textsc \href \url
@@ -339,6 +340,76 @@ var TeX = (function () {
         return html + '</' + tag + '>';
     }
 
+    /* ---------- tabular ---------- */
+
+    /* the column spec of \begin{tabular}{lll} is part of the captured body */
+    function colAligns(spec) {
+        var out = [], i = 0;
+        while (i < spec.length) {
+            var c = spec[i];
+            if (c === 'l' || c === 'X') { out.push('left'); i++; continue; }
+            if (c === 'c') { out.push('center'); i++; continue; }
+            if (c === 'r') { out.push('right'); i++; continue; }
+            /* p/m/b take a width; @ > < ! take a filler — both carry an argument */
+            if ('pmb'.indexOf(c) !== -1) { out.push('left'); i = readArg(spec, i + 1).next; continue; }
+            if ('@><!'.indexOf(c) !== -1) { i = readArg(spec, i + 1).next; continue; }
+            i++;
+        }
+        return out;
+    }
+
+    function splitRows(body) {
+        var rows = [], cells = [], cur = '', depth = 0, i = 0;
+        function endRow() { cells.push(cur); cur = ''; rows.push(cells); cells = []; }
+        while (i < body.length) {
+            var c = body[i];
+            if (c === '\\') {
+                if (body[i + 1] === '\\') {
+                    endRow();
+                    i = readOpt(body, i + 2).next;   /* \\[2pt] */
+                    continue;
+                }
+                cur += c + (body[i + 1] || ''); i += 2; continue;
+            }
+            if (c === '{') depth++;
+            if (c === '}') depth--;
+            if (c === '&' && depth === 0) { cells.push(cur); cur = ''; i++; continue; }
+            cur += c; i++;
+        }
+        endRow();
+        return rows.filter(function (r) {
+            return r.join('').trim() !== '';
+        });
+    }
+
+    function tabular(body, starred) {
+        var arg = readArg(body, 0);
+        if (starred && arg.found) arg = readArg(body, arg.next);   /* width, then spec */
+        var cols = colAligns(arg.found ? arg.value : '');
+        if (arg.found) body = body.slice(arg.next);
+
+        body = body
+            .replace(/\\(hline|toprule|midrule|bottomrule)\b\s*/g, '')
+            .replace(/\\cmidrule\s*(\([^)]*\))?\s*\{[^}]*\}\s*/g, '');
+
+        var rows = splitRows(body);
+        if (!rows.length) return '';
+
+        function row(cells, tag) {
+            var html = '<tr>';
+            for (var k = 0; k < cells.length; k++) {
+                var align = cols[k] && cols[k] !== 'left'
+                    ? ' style="text-align:' + cols[k] + '"' : '';
+                html += '<' + tag + align + '>' + inline(cells[k].trim()) + '</' + tag + '>';
+            }
+            return html + '</tr>';
+        }
+
+        var out = '<table class="tex-table"><thead>' + row(rows[0], 'th') + '</thead><tbody>';
+        for (var i = 1; i < rows.length; i++) out += row(rows[i], 'td');
+        return out + '</tbody></table>';
+    }
+
     function environment(env, body) {
         switch (env) {
             case 'itemize': return list(body, 'ul', 'items');
@@ -349,7 +420,9 @@ var TeX = (function () {
             case 'abstract': return '<div class="tex-abstract">' + blocks(body) + '</div>';
             case 'center': return '<div class="tex-center">' + blocks(body) + '</div>';
             case 'figure':
-            case 'figure*': {
+            case 'figure*':
+            case 'table':
+            case 'table*': {
                 var cap = '';
                 var cm = /\\caption\s*\{/.exec(body);
                 if (cm) {
@@ -361,8 +434,7 @@ var TeX = (function () {
             }
             case 'document': return blocks(body);
             case 'tabular':
-            case 'tabular*':
-            case 'table': return blocks(body);
+            case 'tabular*': return tabular(body, env === 'tabular*');
             default: return blocks(body);
         }
     }

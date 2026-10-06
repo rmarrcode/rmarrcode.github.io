@@ -7,11 +7,12 @@
 \maketitle
 
 \begin{abstract}
-Latent Policy Network is a research framework for reinforcement learning policies
-that generate their own weights on the fly. It targets rapidly changing 1v1
-settings: the opponent has a hidden style that can switch mid-episode, and the
-agent encodes its recent interaction history into a context that produces the
-policy's weights, so it adapts to a new opponent without further training.
+Latent Policy Network is a reinforcement learning agent that generates its own
+weights on the fly. It is tested in Melee Light, a browser recreation of
+Super Smash Bros. Melee, against an opponent whose fighting style and
+character are hidden and can change mid-game. The agent encodes what it has just
+seen into a latent context, and that context produces the weights of the policy
+it fights with so it adapts to a new opponent without further training.
 \end{abstract}
 
 \begin{figure}
@@ -21,79 +22,192 @@ policy's weights, so it adapts to a new opponent without further training.
 \section{Motivation}
 
 A standard policy network carries one fixed set of weights, and so one fixed
-answer to every opponent. When the opponent changes strategy partway through an
-episode, the best a static policy can do is a compromise that is mediocre against
-everyone.
+answer to every opponent. High-level fighting game players, by contrast, must
+constantly adapt to their opponents' strategies and respond accordingly.
 
 If recent interaction reveals who the opponent is, the policy should be able to act
-on that --- not by retraining, but by producing different weights for the opponent
-in front of it.
+on that by producing different weights for the opponent in front of it.
+
+\section{Related work}
+
+The design is adapted from the Latent Program Network (LPN) of Bonnet and
+Macfarlane, which learns a continuous latent space of programs: an encoder maps a
+handful of input--output examples to a latent program, a decoder executes it on new
+inputs, and at test time a gradient search through the latent space refines the
+program until it explains the examples. I reimplemented the LPN optimizer
+(\href{https://github.com/rmarrcode/latent-program-optimizer}{latent-program-optimizer})
+before starting this project.
+
+Latent Policy Network carries the idea over to reinforcement learning. Recent
+interaction history plays the role of the examples, the latent $z$ plays the role of
+the program, and the generated policy plays the role of the decoder. One difference:
+inference here is amortized entirely by the encoder, with no test-time search,
+so adapting to a new opponent costs a single forward pass.
+
+\begin{itemize}
+  \item Clément Bonnet and Matthew V. Macfarlane. ``Searching Latent Program
+  Spaces.'' \textit{arXiv preprint}, 2024.
+  \url{https://arxiv.org/abs/2411.08706}
+\end{itemize}
 
 \section{Architecture}
 
-A context encoder reads the recent history of observations, and its output drives
-the actor. The framework compares four ways of letting context shape the policy:
+A context encoder reads the last 12 observations, and its output drives the actor.
+Four ways of letting context shape the policy were compared:
 
 \begin{itemize}
-  \item \resumeItem{Static baseline}{A regular, non-adaptive actor-critic
-  (\texttt{static\_mlp}).}
+  \item \resumeItem{Static baseline}{A regular, non-adaptive actor-critic that
+  ignores context.}
 
-  \item \resumeItem{Hyper head}{The context network generates the weights of the
-  actor's final linear layer (\texttt{hyper\_head}).}
+  \item \resumeItem{Hyper head}{The context generates the weights of the actor's
+  final layer.}
 
-  \item \resumeItem{FiLM}{The context network modulates the actor's features with
-  FiLM scale and shift parameters (\texttt{film}).}
+  \item \resumeItem{FiLM}{The context modulates the actor's features with FiLM scale
+  and shift parameters.}
 
-  \item \resumeItem{Full hypernetwork}{The context network generates every layer of
-  the actor (\texttt{full\_hyper}).}
+  \item \resumeItem{Full hypernetwork}{The context generates every layer of the
+  actor.}
 \end{itemize}
 
-Each is paired with a choice of context encoder: a mean over recent observations,
-a flattened window, a GRU, or a small Transformer. Policies are trained with PPO.
+The adaptive agents use a GRU context encoder. All agents are trained with PPO.
 
-\section{Environments}
+\begin{figure}
+\includegraphics{imgs/latent-policy-network-system.svg}
+\caption{The full system. The context encoder compresses the last 12 observations
+into a latent $z$; a hypernetwork maps $z$ to the weights $\theta$ of the actor
+that chooses each action, and the critic reads $z$ directly. Everything inside the
+dashed box is trained end-to-end with PPO.}
+\end{figure}
+
+\section{The Melee Light environment}
+
+Melee Light runs headless in a browser and is driven step by step from Python. The
+learner controls player one; player two is driven by a scripted opponent that
+presses the same 20 controller inputs.
+
+\subsection{Rules}
 
 \begin{itemize}
-  \item \resumeItem{Repeated duel}{A vectorized 1v1 environment whose opponent has a
-  hidden style that can switch mid-episode. Evaluation tracks reward immediately
-  after a switch, during early adaptation, and once the policy has settled.}
+  \item \resumeItem{One exchange per game}{Both fighters spawn close together on
+  the stage, facing each other, at 0\% damage.}
 
-  \item \resumeItem{Public suite}{Adapters for OpenSpiel matrix and turn-based
-  games, PettingZoo rock-paper-scissors, MPE2, SlimeVolley, MAgent2 Battle, and
-  Footsies.}
+  \item \resumeItem{First hit wins}{The game ends the moment either fighter is hit.
+  Landing the hit scores $+1$; being hit scores $-1$.}
 
-  \item \resumeItem{Melee Light}{Scripted opponents drawn from a pool of hidden
-  styles --- rushdown, spacer, zoner, mirror, anti-frequency, and others --- and
-  character matchups, switching mid-episode, so recent history identifies both
-  style and matchup.}
+  \item \resumeItem{No stalling}{If 240 frames (four seconds of game time) pass
+  without a hit, the learner loses and scores $-1$. Waiting out the clock is never
+  a safe strategy.}
+
+  \item \resumeItem{Decisions}{The learner chooses an action every 4 frames, so at
+  most 60 decisions per game, from 20 controller inputs: idle, four directions,
+  jump, shield, jab, four tilts, four smash attacks, and four specials.}
+
+  \item \resumeItem{Observations}{Each step the learner sees 30 numbers: for both
+  fighters, position, velocity, knockback velocity, facing, whether they are
+  grounded, damage, knockback, hitstun, hitlag, shield health and action timer,
+  plus the distance between them. Nothing in the observation names the opponent's
+  style or character.}
 \end{itemize}
+
+\subsection{Hidden opponents}
+
+Each game the opponent is drawn from eight scripted styles. After it has played at
+least 8 steps, the style has a 5\% chance of switching on every step, so the
+opponent can change in the middle of a game.
+
+\begin{itemize}
+  \item \resumeItem{Rushdown}{Closes distance, jumps in occasionally, and attacks
+  up close.}
+  \item \resumeItem{Approach and jab}{Walks in and uses jabs and tilts.}
+  \item \resumeItem{Spacer}{Backs off when too close and pokes from mid-range.}
+  \item \resumeItem{Zoner}{Retreats and attacks with specials from a distance.}
+  \item \resumeItem{Counter-poke}{Shields at close range and pokes otherwise.}
+  \item \resumeItem{Jumper}{Jump-heavy vertical pressure.}
+  \item \resumeItem{Mirror}{Copies the learner's current input, flipped
+  left-to-right.}
+  \item \resumeItem{Anti-frequency}{Counters whichever kind of action the learner
+  has used most.}
+\end{itemize}
+
+Characters are hidden too: each game the learner plays as Fox, Falco, or Captain
+Falcon, and the opponent as Marth, Jigglypuff, Fox, Falco, or Captain Falcon. To
+win consistently, the learner has to work out both the style and the matchup from
+the last few moments of play.
 
 \section{Results}
 
+Every agent was trained on two seeds and evaluated over 32 games per checkpoint.
+
 \begin{itemize}
-  \item \resumeItem{Repeated duel}{In a two-seed sweep, a full hypernetwork with a
-  GRU encoder reached a mean eval return of 42.3 against 33.3 for the static
-  baseline. In longer same-budget runs evaluated over 256 episodes it reached a
-  return of 66.9 and a 68.7\% win rate, against 58.8 and 64.7\% for the static
+  \item \resumeItem{Broad sweep, 12 updates}{All four architectures were trained
+  briefly. The full hypernetwork had the best mean win rate, 15.6\%, but only just
+  ahead of the static baseline at 14.1\%. Hyper head and FiLM fell behind the
   baseline.}
 
-  \item \resumeItem{Melee Light}{Against the scripted style pool, the full
-  hypernetwork with a GRU encoder was the only architecture with a repeatable edge
-  over the static baseline, winning 29.7\% of games against 18.8\%. Earlier runs
-  against the built-in CPU showed no reliable edge for any adaptive architecture.}
+  \item \resumeItem{Follow-up, 24 updates}{The full hypernetwork and the static
+  baseline were trained twice as long. The full hypernetwork won 29.7\% of games
+  against 18.8\% for the baseline. On one seed the two tied; on the other the full
+  hypernetwork won twice as often, 43.8\% against 21.9\%.}
 \end{itemize}
 
 \begin{figure}
-\includegraphics{imgs/latent-policy-network-returns.svg}
-\caption{Mean eval return in the repeated duel, two seeds, 40 updates per run.
-Dark bars are adaptive architectures; the light bar is the static baseline.}
+\includegraphics{imgs/latent-policy-network-winrate.svg}
+\caption{Win rate in Melee Light against the hidden-style opponent pool, mean of
+two seeds, 32 evaluation games per checkpoint.}
 \end{figure}
 
-\begin{figure}
-\includegraphics{imgs/latent-policy-network-winrate.svg}
-\caption{Win rate of the strongest adaptive architectures against the static
-baseline: the repeated duel after 120 updates (256 eval episodes), and Melee Light
-against the scripted style pool after 24 updates.}
-\end{figure}
+Two seeds and 32 games per checkpoint is a small sample, so this is an edge, not a
+settled result. It is still the only architecture with a repeatable edge over the
+static baseline in this environment. An earlier version of the environment, which
+used the game's built-in CPU as the opponent instead of hidden switching styles,
+showed no reliable edge for any adaptive architecture. A fixed opponent leaves
+nothing hidden to infer, which is exactly what generated weights are for.
+
+\section{Next steps}
+
+Despite the initial success of this method, I don't think my current formulation
+fully harnesses the ideas behind the Latent Program Network. Several pieces are
+still missing, and I'd like to expand on them.
+
+\begin{table}
+\begin{tabular}{lll}
+   & Latent Program Network & Latent Policy Network \\
+  \hline
+  Encoder
+    & A handful of input--output examples are compressed into a latent
+      program $z$.
+    & The last 12 observations are compressed into a latent context $z$. \\
+  Decoder
+    & $(z, x) \to y$. The latent program is executed on a new input grid.
+    & $(z, o) \to a$. The latent context generates the actor weights that
+      choose the action. \\
+  Optimization
+    & Gradient search through latent space at test time, refining $z$ until
+      the decoder reproduces the given examples.
+    & ??? \\
+\end{tabular}
+\caption{The two networks, stage by stage. In Latent Policy Network, inference is
+amortized entirely by the encoder, so the test-time search that refines $z$ has no
+counterpart yet.}
+\end{table}
+
+So far, Latent Policy Network draws on the encoder and the decoder, but it is
+missing the crucial step: optimization. I have a few ideas for how that step
+should work.
+
+\begin{itemize}
+  \item \resumeItem{Search in the moment}{At a given instant the agent considers
+  several latent vectors, imagines how each one plays out, and acts on the one
+  with the most favorable outcome.}
+
+  \item \resumeItem{Reflect when time allows}{Pause between exchanges to
+  reconsider the latent vectors seen so far and commit to the most suitable one
+  going forward.}
+
+  \item \resumeItem{Pin down the crux}{Work out what is actually gained by
+  meta-learning weights instead of training to find a single policy.}
+
+  \item \resumeItem{Self-play}{Replace the scripted opponent pool with self-play.}
+\end{itemize}
 
 \end{document}
