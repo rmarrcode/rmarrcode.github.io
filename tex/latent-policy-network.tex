@@ -25,9 +25,55 @@ answer to every opponent. When the opponent changes strategy partway through an
 episode, the best a static policy can do is a compromise that is mediocre against
 everyone.
 
-If recent interaction reveals who the opponent is, the policy should be able to act
-on that --- not by retraining, but by producing different weights for the opponent
-in front of it.
+The policy should learn to adapt to new strategies it hasn't seen before. 
+
+\section{Previous Work}
+
+The closest published relative is the \href{https://arxiv.org/abs/2411.08706}{Latent Program Network}, 
+aimed at programming by example and ARC-AGI rather than at control. 
+LPN factors inference into three parts: an encoder maps each input-output pair of a 
+specification to a distribution over a compact latent space of implicit programs; a
+decoder executes a latent program by predicting the output for a new input 
+directly, with no domain-specific language anywhere in the
+loop; and between the two sits a search over the latent itself. Pairs are encoded
+independently and averaged, so the representation is permutation invariant to the
+order of the specification and indifferent to how many pairs it contains.
+
+\begin{figure}
+\includegraphics{imgs/lpn-diagram.png}
+\caption{Inference in the Latent Program Network. The encoder maps I/O pairs to a
+latent program, the latent is refined by optimization until it explains those pairs,
+and the decoder executes the refined latent on a new input. Figure from
+\href{https://arxiv.org/abs/2411.08706}{Macfarlane and Bonnet}.}
+\end{figure}
+
+The middle stage is what makes the architecture worth borrowing from. An encoder
+trained to approximate a posterior over programs will guess wrong on a genuinely novel
+task, so LPN treats its output as a starting point rather than an answer: because the
+decoder is differentiable in $z$, the latent can be refined by gradient ascent on the
+decoder's log-likelihood of the observed pairs. Test-time adaptation is therefore part
+of the architecture instead of a fine-tuning procedure bolted on afterwards. The whole
+system trains end-to-end with a leave-one-out reconstruction objective --- each output
+is predicted from its input and the \emph{other} pairs, so the encoder cannot cheat by
+compressing the answer --- plus a KL term against the prior. On programming-by-example
+tasks it matches or beats in-context learning and test-time training, and on ARC-AGI it
+doubles its out-of-distribution performance once search is switched on.
+
+This project shares the skeleton and changes what the latent is for. Both systems
+compress a handful of recent observations into a vector that determines behavior rather
+than carrying one fixed set of weights, and both bet that the compression is where
+generalization comes from. The differences are the interesting part. LPN's
+specification is a static set of I/O pairs describing one program; here the context is a
+running interaction history against an opponent whose hidden style can switch
+mid-episode, so the latent has to be re-inferred continuously rather than solved for
+once. LPN decodes its latent into an output, whereas the full hypernetwork decodes
+into the actor's weights. And LPN can afford to spend test-time compute on gradient
+ascent because a supervised I/O pair supplies a likelihood to ascend; a reward signal
+does not, so here the encoder's single forward pass carries the entire burden of
+adaptation. That makes LPN's own finding --- that poor initialization sends the latent
+search into different local optima, which is why amortized inference from the encoder
+matters --- a note of caution rather than a reassurance, since this setting is nothing
+but the initialization.
 
 \section{Architecture}
 
